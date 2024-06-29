@@ -1,0 +1,174 @@
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>分步表单</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../static/lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="../static/css/public.css" media="all">
+    <link rel="stylesheet" href="../static/js/lay-module/step-lay/step.css" media="all">
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+
+        <div class="layui-fluid">
+            <div class="layui-card">
+                <div class="layui-card-body" style="padding-top: 40px;">
+                    <div class="layui-carousel" id="stepForm" lay-filter="stepForm" style="margin: 0 auto;">
+                        <div carousel-item>
+                            <div>
+                                <form class="layui-form" style="margin: 0 auto;max-width: 460px;padding-top: 40px;" action = '/?status=quit'>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">用户名:</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" placeholder="请填写用户ID" class="layui-input" lay-verify="number" required />
+
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">用户邮箱:</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" placeholder="请填写用户邮箱" value="" class="layui-input" lay-verify="number" required>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">用户手机号:</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" placeholder="请填写用户手机号(选填)" value="" class="layui-input" lay-verify="number" >
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">用户类型:</label>
+                                        <div class="layui-input-block">
+                                            <select lay-verify="required">
+                                                <option value="0" selected>普通用户</option>
+                                                <option value="1">批发商</option>
+                                                <option value="2">养殖户</option>
+                                                <option value="3">管理员</option>
+                                                <option value="4">高级管理员</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">辅助信息:</label>
+                                        <div class="layui-input-block">
+                                            <textarea placeholder="备注" value="" class="layui-textarea"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" lay-submit lay-filter="formStep">
+                                                &emsp;下一步&emsp;
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div>
+                                <form class="layui-form" style="margin: 0 auto;max-width: 460px;padding-top: 40px;">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">新密码:</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" placeholder="请填写新密码" value="" class="layui-input" lay-verify="number" required>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">确认密码:</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" placeholder="请确认密码" value="" class="layui-input" lay-verify="number" required>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">邮箱验证码:</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" placeholder="请填写邮箱验证码" value="" class="layui-input" lay-verify="number" required>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button type="button" class="layui-btn layui-btn-primary pre">上一步</button>
+                                            <button class="layui-btn" lay-submit lay-filter="formStep2">
+                                                &emsp;确认验证&emsp;
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div>
+                                <div style="text-align: center;margin-top: 90px;">
+                                    <i class="layui-icon layui-circle"
+                                       style="color: white;font-size:30px;font-weight:bold;background: #52C41A;padding: 20px;line-height: 80px;">&#xe605;</i>
+                                    <div style="font-size: 24px;color: #333;font-weight: 500;margin-top: 30px;">
+                                        修改成功
+                                    </div>
+                                    <div style="font-size: 14px;color: #666;margin-top: 20px;">您可以正常登入了！</div>
+                                </div>
+                                <div style="text-align: center;margin-top: 50px;">
+                                    <a class="layui-btn" href = '/'>回到登录页面</a>
+                                    <button class="layui-btn layui-btn-primary">查看新密码</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div style="color: #666;margin-top: 30px;margin-bottom: 40px;padding-left: 100px;">
+                        <h2>说明</h2><br>
+                        <h4></h4>
+                        <p>请您按照上述顺序，输入相关信息，以辅助进行身份验证和密码修改</p>
+                        <h4>您需要结合邮箱发送的验证码进行验证</h4>
+                        <p>如果需要，请您联系我们的工作人员：18555687689</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="../static/lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+<script src="../static/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script>
+    layui.use([ 'form', 'step'], function () {
+        var $ = layui.$,
+            form = layui.form,
+            step = layui.step;
+
+        step.render({
+            elem: '#stepForm',
+            filter: 'stepForm',
+            width: '100%', //设置容器宽度
+            stepWidth: '750px',
+            height: '500px',
+            stepItems: [{
+                title: '身份验证'
+            }, {
+                title: '新密码设置'
+            }, {
+                title: '修改完成'
+            }]
+        });
+
+
+        form.on('submit(formStep)', function (data) {
+            step.next('#stepForm');
+            return false;
+        });
+
+        form.on('submit(formStep2)', function (data) {
+            step.next('#stepForm');
+            return false;
+        });
+
+        form.on('submit("formStep3")', function (data) {
+            return true;
+        });
+
+        $('.pre').click(function () {
+            step.pre('#stepForm');
+        });
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../static/lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="../static/css/public.css" media="all">
+
+    <style>
+        .layui-input-block {
+            display: flex;
+            align-items: center;
+            /* 垂直居中对齐 */
+        }
+
+        .layui-input-block input[type="text"] {
+            margin-right: 5px;
+            /* 右边距 */
+        }
+
+        .layui-input-block span {
+            white-space: nowrap;
+            /* 防止文本换行 */
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="weather_7day">
+        <h2>{{cur_prov}} - {{cur_city}} 天气周报</h2>
+        <hr>
+        <table class="layui-table">
+            <colgroup>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+            </colgroup>
+            <thead class="layui-table-header">
+                <tr>
+                    <td>日期</td>
+                    <td>天气</td>
+                    <td>风向</td>
+                    <td>风速</td>
+                    <td>气温</td>
+                </tr>
+            </thead>
+            <tbody class="layui-table-body">
+                {% for day_info in weather_days %}
+                <tr>
+                    <td><a href="http://127.0.0.1:8000/weather/weekreport?id={{forloop.counter}}">{{day_info.date}}
+                            - {{day_info.week}}</a></td>
+                    <td>{{day_info.weather_beg}} 转 {{day_info.weather_end}}</td>
+                    <td>{{day_info.wind_direc_beg}} 转 {{day_info.wind_direc_end}}</td>
+                    <td>{{day_info.wind_level_beg}} 转 {{day_info.wind_level_end}}</td>
+                    <td>{{day_info.temperature_min}} 至 {{day_info.temperature_max}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% if weather_hours %}
+        <hr>
+        <table class="layui-table">
+            <colgroup>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+            </colgroup>
+            <thead class="layui-table-header">
+                <tr>
+                    <td>时刻</td>
+                    <td>温度</td>
+                    <td>降水</td>
+                    <td>风向</td>
+                    <td>风速</td>
+                    <td>气压</td>
+                    <td>湿度</td>
+                    <td>云量</td>
+                </tr>
+            </thead>
+            <tbody class="layui-table-body">
+                {% for hour_info in weather_hours %}
+                <tr>
+                    <td>{{hour_info.hour}}</td>
+                    <td>{{hour_info.temperature}}</td>
+                    <td>{{hour_info.rain}}</td>
+                    <td>{{hour_info.wind_direc}}</td>
+                    <td>{{hour_info.wind_veloc}}</td>
+                    <td>{{hour_info.pressure}}</td>
+                    <td>{{hour_info.humidity}}</td>
+                    <td>{{hour_info.cloud}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+</body>
+
+<script src="../static/lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+
+</html>

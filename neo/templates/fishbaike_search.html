@@ -1,0 +1,80 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../static/lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="../static/css/public.css" media="all">
+
+    <style>
+        .layui-input-block {
+            display: flex;
+            align-items: center;
+            /* 垂直居中对齐 */
+        }
+
+        .layui-input-block input[type="text"] {
+            margin-right: 5px;
+            /* 右边距 */
+        }
+
+        .layui-input-block span {
+            white-space: nowrap;
+            /* 防止文本换行 */
+        }
+
+        .fish-images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            /* 根据需要调整间距 */
+            justify-content: center;
+            /* 水平居中图片 */
+        }
+
+        .image-container {
+            flex: 1;
+            /* 图片容器的灵活性 */
+            min-width: 150px;
+            /* 图片的最小宽度 */
+            max-width: 300px;
+            /* 图片的最大宽度 */
+        }
+
+        .fish-image {
+            width: 150px;
+            height: auto;
+            border-radius: 10px;
+            /* 圆角边框 */
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="fishbaike_search_results">
+        <table class="layui-table">
+            <thead class="layui-table-header">
+                <td>正式名</td>
+                <td>别名</td>
+            </thead>
+            <tbody>
+                {% for fish_info in results %}
+                <tr>
+                    <td>
+                        <a href="http://localhost:8000/fishbaike/showdetail?name={{ fish_info.name|urlencode }}">
+                            {{ fish_info.name}}
+                        </a>
+                    </td>
+                    <td>{{ fish_info.alias }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

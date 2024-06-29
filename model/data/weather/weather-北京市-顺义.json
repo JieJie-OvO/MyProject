@@ -1,0 +1,666 @@
+{
+  "province": "北京市",
+  "city": "顺义",
+  "day": [
+    {
+      "date": "06/28",
+      "weather_beg": "晴",
+      "wind_direc_beg": "南风",
+      "wind_level_beg": "微风",
+      "temperature_max": "36℃",
+      "temperature_min": "25℃",
+      "weather_end": "多云",
+      "wind_direc_end": "东南风",
+      "wind_level_end": "微风",
+      "week": "星期五"
+    },
+    {
+      "date": "06/29",
+      "weather_beg": "阴",
+      "wind_direc_beg": "东南风",
+      "wind_level_beg": "3~4级",
+      "temperature_max": "35℃",
+      "temperature_min": "24℃",
+      "weather_end": "阴",
+      "wind_direc_end": "东南风",
+      "wind_level_end": "微风",
+      "week": "星期六"
+    },
+    {
+      "date": "06/30",
+      "weather_beg": "多云",
+      "wind_direc_beg": "西风",
+      "wind_level_beg": "微风",
+      "temperature_max": "35℃",
+      "temperature_min": "25℃",
+      "weather_end": "多云",
+      "wind_direc_end": "东风",
+      "wind_level_end": "微风",
+      "week": "星期日"
+    },
+    {
+      "date": "07/01",
+      "weather_beg": "多云",
+      "wind_direc_beg": "东风",
+      "wind_level_beg": "微风",
+      "temperature_max": "33℃",
+      "temperature_min": "22℃",
+      "weather_end": "小雨",
+      "wind_direc_end": "北风",
+      "wind_level_end": "微风",
+      "week": "星期一"
+    },
+    {
+      "date": "07/02",
+      "weather_beg": "小雨",
+      "wind_direc_beg": "南风",
+      "wind_level_beg": "微风",
+      "temperature_max": "31℃",
+      "temperature_min": "22℃",
+      "weather_end": "小雨",
+      "wind_direc_end": "东南风",
+      "wind_level_end": "微风",
+      "week": "星期二"
+    },
+    {
+      "date": "07/03",
+      "weather_beg": "多云",
+      "wind_direc_beg": "东风",
+      "wind_level_beg": "微风",
+      "temperature_max": "32℃",
+      "temperature_min": "22℃",
+      "weather_end": "多云",
+      "wind_direc_end": "东南风",
+      "wind_level_end": "微风",
+      "week": "星期三"
+    },
+    {
+      "date": "07/04",
+      "weather_beg": "多云",
+      "wind_direc_beg": "南风",
+      "wind_level_beg": "微风",
+      "temperature_max": "33℃",
+      "temperature_min": "23℃",
+      "weather_end": "晴",
+      "wind_direc_end": "东南风",
+      "wind_level_end": "微风",
+      "week": "星期四"
+    }
+  ],
+  "hour": [
+    [
+      {
+        "hour": "11:00",
+        "temperature": "32℃",
+        "rain": "无降水",
+        "wind_veloc": "3m/s",
+        "wind_direc": "西南风",
+        "pressure": "992.2hPa",
+        "humidity": "26.5%",
+        "cloud": "10%"
+      },
+      {
+        "hour": "14:00",
+        "temperature": "36℃",
+        "rain": "无降水",
+        "wind_veloc": "5.2m/s",
+        "wind_direc": "西南风",
+        "pressure": "990.7hPa",
+        "humidity": "21.8%",
+        "cloud": "10%"
+      },
+      {
+        "hour": "17:00",
+        "temperature": "35℃",
+        "rain": "无降水",
+        "wind_veloc": "5.1m/s",
+        "wind_direc": "西南风",
+        "pressure": "988.4hPa",
+        "humidity": "23.2%",
+        "cloud": "10%"
+      },
+      {
+        "hour": "20:00",
+        "temperature": "32℃",
+        "rain": "无降水",
+        "wind_veloc": "4.4m/s",
+        "wind_direc": "西南风",
+        "pressure": "989.1hPa",
+        "humidity": "28.6%",
+        "cloud": "10%"
+      },
+      {
+        "hour": "23:00",
+        "temperature": "28.8℃",
+        "rain": "无降水",
+        "wind_veloc": "4m/s",
+        "wind_direc": "东南风",
+        "pressure": "990.1hPa",
+        "humidity": "42.9%",
+        "cloud": "10%"
+      },
+      {
+        "hour": "02:00",
+        "temperature": "26℃",
+        "rain": "无降水",
+        "wind_veloc": "3.3m/s",
+        "wind_direc": "东南风",
+        "pressure": "990hPa",
+        "humidity": "48.2%",
+        "cloud": "50%"
+      },
+      {
+        "hour": "05:00",
+        "temperature": "25℃",
+        "rain": "无降水",
+        "wind_veloc": "1.9m/s",
+        "wind_direc": "东北风",
+        "pressure": "989.6hPa",
+        "humidity": "55%",
+        "cloud": "50%"
+      },
+      {
+        "hour": "08:00",
+        "temperature": "27.5℃",
+        "rain": "无降水",
+        "wind_veloc": "1.3m/s",
+        "wind_direc": "东风",
+        "pressure": "989.7hPa",
+        "humidity": "48.5%",
+        "cloud": "50%"
+      }
+    ],
+    [
+      {
+        "hour": "08:00",
+        "temperature": "27.5℃",
+        "rain": "无降水",
+        "wind_veloc": "1.3m/s",
+        "wind_direc": "东风",
+        "pressure": "989.7hPa",
+        "humidity": "48.5%",
+        "cloud": "50%"
+      },
+      {
+        "hour": "11:00",
+        "temperature": "32.5℃",
+        "rain": "无降水",
+        "wind_veloc": "1.6m/s",
+        "wind_direc": "东南风",
+        "pressure": "989.2hPa",
+        "humidity": "39.4%",
+        "cloud": "50%"
+      },
+      {
+        "hour": "14:00",
+        "temperature": "35℃",
+        "rain": "无降水",
+        "wind_veloc": "3.5m/s",
+        "wind_direc": "东南风",
+        "pressure": "986.7hPa",
+        "humidity": "30.4%",
+        "cloud": "90%"
+      },
+      {
+        "hour": "17:00",
+        "temperature": "33.9℃",
+        "rain": "无降水",
+        "wind_veloc": "3.1m/s",
+        "wind_direc": "西南风",
+        "pressure": "985.2hPa",
+        "humidity": "26.7%",
+        "cloud": "90%"
+      },
+      {
+        "hour": "20:00",
+        "temperature": "31.2℃",
+        "rain": "无降水",
+        "wind_veloc": "5.6m/s",
+        "wind_direc": "东南风",
+        "pressure": "986.2hPa",
+        "humidity": "52.5%",
+        "cloud": "90%"
+      },
+      {
+        "hour": "23:00",
+        "temperature": "27.8℃",
+        "rain": "无降水",
+        "wind_veloc": "2.7m/s",
+        "wind_direc": "东南风",
+        "pressure": "987.9hPa",
+        "humidity": "62.3%",
+        "cloud": "90%"
+      },
+      {
+        "hour": "02:00",
+        "temperature": "25℃",
+        "rain": "无降水",
+        "wind_veloc": "1.7m/s",
+        "wind_direc": "东南风",
+        "pressure": "987.3hPa",
+        "humidity": "72%",
+        "cloud": "90%"
+      },
+      {
+        "hour": "05:00",
+        "temperature": "24℃",
+        "rain": "无降水",
+        "wind_veloc": "0.9m/s",
+        "wind_direc": "东南风",
+        "pressure": "986.1hPa",
+        "humidity": "65.9%",
+        "cloud": "50%"
+      }
+    ],
+    [
+      {
+        "hour": "08:00",
+        "temperature": "26.7℃",
+        "rain": "无降水",
+        "wind_veloc": "0.4m/s",
+        "wind_direc": "东北风",
+        "pressure": "986.8hPa",
+        "humidity": "59.8%",
+        "cloud": "90%"
+      },
+      {
+        "hour": "11:00",
+        "temperature": "32.2℃",
+        "rain": "无降水",
+        "wind_veloc": "0.1m/s",
+        "wind_direc": "东风",
+        "pressure": "986.2hPa",
+        "humidity": "44.8%",
+        "cloud": "50%"
+      },
+      {
+        "hour": "14:00",
+        "temperature": "35℃",
+        "rain": "无降水",
+        "wind_veloc": "0.9m/s",
+        "wind_direc": "西南风",
+        "pressure": "983.9hPa",
+        "humidity": "29.9%",
+        "cloud": "50%"
+      },
+      {
+        "hour": "17:00",
+        "temperature": "34℃",
+        "rain": "无降水",
+        "wind_veloc": "2.1m/s",
+        "wind_direc": "西南风",
+        "pressure": "983.5hPa",
+        "humidity": "32.6%",
+        "cloud": "50%"
+      },
+      {
+        "hour": "20:00",
+        "temperature": "31.5℃",
+        "rain": "无降水",
+        "wind_veloc": "1.9m/s",
+        "wind_direc": "西北风",
+        "pressure": "984.3hPa",
+        "humidity": "35.3%",
+        "cloud": "50%"
+      },
+      {
+        "hour": "23:00",
+        "temperature": "28.4℃",
+        "rain": "无降水",
+        "wind_veloc": "1.4m/s",
+        "wind_direc": "东南风",
+        "pressure": "985.3hPa",
+        "humidity": "46.9%",
+        "cloud": "50%"
+      },
+      {
+        "hour": "02:00",
+        "temperature": "25.9℃",
+        "rain": "无降水",
+        "wind_veloc": "1.3m/s",
+        "wind_direc": "东北风",
+        "pressure": "985.5hPa",
+        "humidity": "58.5%",
+        "cloud": "50%"
+      },
+      {
+        "hour": "05:00",
+        "temperature": "25℃",
+        "rain": "无降水",
+        "wind_veloc": "4m/s",
+        "wind_direc": "东南风",
+        "pressure": "985.6hPa",
+        "humidity": "59%",
+        "cloud": "10%"
+      }
+    ],
+    [
+      {
+        "hour": "08:00",
+        "temperature": "27℃",
+        "rain": "无降水",
+        "wind_veloc": "2.4m/s",
+        "wind_direc": "东北风",
+        "pressure": "986.7hPa",
+        "humidity": "59.4%",
+        "cloud": "10%"
+      },
+      {
+        "hour": "11:00",
+        "temperature": "30.5℃",
+        "rain": "无降水",
+        "wind_veloc": "3m/s",
+        "wind_direc": "东南风",
+        "pressure": "986.7hPa",
+        "humidity": "51.5%",
+        "cloud": "60%"
+      },
+      {
+        "hour": "14:00",
+        "temperature": "33℃",
+        "rain": "无降水",
+        "wind_veloc": "2.3m/s",
+        "wind_direc": "东北风",
+        "pressure": "985.8hPa",
+        "humidity": "46.6%",
+        "cloud": "60%"
+      },
+      {
+        "hour": "17:00",
+        "temperature": "32℃",
+        "rain": "无降水",
+        "wind_veloc": "2.6m/s",
+        "wind_direc": "东北风",
+        "pressure": "983.8hPa",
+        "humidity": "62.1%",
+        "cloud": "60%"
+      },
+      {
+        "hour": "20:00",
+        "temperature": "29.2℃",
+        "rain": "无降水",
+        "wind_veloc": "2.1m/s",
+        "wind_direc": "东北风",
+        "pressure": "985.8hPa",
+        "humidity": "77.6%",
+        "cloud": "60%"
+      },
+      {
+        "hour": "23:00",
+        "temperature": "25.8℃",
+        "rain": "无降水",
+        "wind_veloc": "2.1m/s",
+        "wind_direc": "西北风",
+        "pressure": "989.5hPa",
+        "humidity": "86.5%",
+        "cloud": "60%"
+      },
+      {
+        "hour": "02:00",
+        "temperature": "23.1℃",
+        "rain": "无降水",
+        "wind_veloc": "1.3m/s",
+        "wind_direc": "西北风",
+        "pressure": "989.7hPa",
+        "humidity": "95.4%",
+        "cloud": "60%"
+      },
+      {
+        "hour": "05:00",
+        "temperature": "22℃",
+        "rain": "0.1mm",
+        "wind_veloc": "0.7m/s",
+        "wind_direc": "西北风",
+        "pressure": "990.3hPa",
+        "humidity": "91.7%",
+        "cloud": "90%"
+      }
+    ],
+    [
+      {
+        "hour": "08:00",
+        "temperature": "24.3℃",
+        "rain": "无降水",
+        "wind_veloc": "1.5m/s",
+        "wind_direc": "西北风",
+        "pressure": "992hPa",
+        "humidity": "88%",
+        "cloud": "90%"
+      },
+      {
+        "hour": "11:00",
+        "temperature": "28.8℃",
+        "rain": "无降水",
+        "wind_veloc": "1.2m/s",
+        "wind_direc": "东北风",
+        "pressure": "992.3hPa",
+        "humidity": "69%",
+        "cloud": "90%"
+      },
+      {
+        "hour": "14:00",
+        "temperature": "31℃",
+        "rain": "0.1mm",
+        "wind_veloc": "1.3m/s",
+        "wind_direc": "南风",
+        "pressure": "990.6hPa",
+        "humidity": "87%",
+        "cloud": "90%"
+      },
+      {
+        "hour": "17:00",
+        "temperature": "30.1℃",
+        "rain": "无降水",
+        "wind_veloc": "2.9m/s",
+        "wind_direc": "东南风",
+        "pressure": "990.2hPa",
+        "humidity": "54.5%",
+        "cloud": "90%"
+      },
+      {
+        "hour": "20:00",
+        "temperature": "27.9℃",
+        "rain": "无降水",
+        "wind_veloc": "1.2m/s",
+        "wind_direc": "东南风",
+        "pressure": "991.9hPa",
+        "humidity": "58.9%",
+        "cloud": "90%"
+      },
+      {
+        "hour": "23:00",
+        "temperature": "25.1℃",
+        "rain": "无降水",
+        "wind_veloc": "1.2m/s",
+        "wind_direc": "东南风",
+        "pressure": "993hPa",
+        "humidity": "72.2%",
+        "cloud": "90%"
+      },
+      {
+        "hour": "02:00",
+        "temperature": "22.9℃",
+        "rain": "0.1mm",
+        "wind_veloc": "1.2m/s",
+        "wind_direc": "东南风",
+        "pressure": "994hPa",
+        "humidity": "85.4%",
+        "cloud": "90%"
+      },
+      {
+        "hour": "05:00",
+        "temperature": "22℃",
+        "rain": "0.1mm",
+        "wind_veloc": "0.9m/s",
+        "wind_direc": "东南风",
+        "pressure": "994.8hPa",
+        "humidity": "80.4%",
+        "cloud": "90%"
+      }
+    ],
+    [
+      {
+        "hour": "08:00",
+        "temperature": "24.5℃",
+        "rain": "0.1mm",
+        "wind_veloc": "0.7m/s",
+        "wind_direc": "东南风",
+        "pressure": "995.6hPa",
+        "humidity": "75.5%",
+        "cloud": "60%"
+      },
+      {
+        "hour": "11:00",
+        "temperature": "29.5℃",
+        "rain": "无降水",
+        "wind_veloc": "1.1m/s",
+        "wind_direc": "东南风",
+        "pressure": "994.7hPa",
+        "humidity": "65%",
+        "cloud": "60%"
+      },
+      {
+        "hour": "14:00",
+        "temperature": "32℃",
+        "rain": "无降水",
+        "wind_veloc": "1.5m/s",
+        "wind_direc": "东南风",
+        "pressure": "993.9hPa",
+        "humidity": "54.5%",
+        "cloud": "60%"
+      },
+      {
+        "hour": "17:00",
+        "temperature": "31.1℃",
+        "rain": "无降水",
+        "wind_veloc": "1.4m/s",
+        "wind_direc": "东南风",
+        "pressure": "994.4hPa",
+        "humidity": "60.4%",
+        "cloud": "60%"
+      },
+      {
+        "hour": "20:00",
+        "temperature": "28.6℃",
+        "rain": "无降水",
+        "wind_veloc": "2.1m/s",
+        "wind_direc": "东南风",
+        "pressure": "994.9hPa",
+        "humidity": "66.3%",
+        "cloud": "60%"
+      },
+      {
+        "hour": "23:00",
+        "temperature": "25.5℃",
+        "rain": "无降水",
+        "wind_veloc": "1.6m/s",
+        "wind_direc": "东南风",
+        "pressure": "995hPa",
+        "humidity": "76.8%",
+        "cloud": "60%"
+      },
+      {
+        "hour": "02:00",
+        "temperature": "23℃",
+        "rain": "无降水",
+        "wind_veloc": "1.3m/s",
+        "wind_direc": "东南风",
+        "pressure": "995.1hPa",
+        "humidity": "87.3%",
+        "cloud": "60%"
+      },
+      {
+        "hour": "05:00",
+        "temperature": "22℃",
+        "rain": "无降水",
+        "wind_veloc": "1.6m/s",
+        "wind_direc": "东南风",
+        "pressure": "995.8hPa",
+        "humidity": "87%",
+        "cloud": "60%"
+      }
+    ],
+    [
+      {
+        "hour": "08:00",
+        "temperature": "24.8℃",
+        "rain": "无降水",
+        "wind_veloc": "2.1m/s",
+        "wind_direc": "东南风",
+        "pressure": "996.5hPa",
+        "humidity": "83.5%",
+        "cloud": "60%"
+      },
+      {
+        "hour": "11:00",
+        "temperature": "30.3℃",
+        "rain": "无降水",
+        "wind_veloc": "1.7m/s",
+        "wind_direc": "东南风",
+        "pressure": "995.2hPa",
+        "humidity": "87%",
+        "cloud": "50%"
+      },
+      {
+        "hour": "14:00",
+        "temperature": "33℃",
+        "rain": "无降水",
+        "wind_veloc": "1.2m/s",
+        "wind_direc": "东南风",
+        "pressure": "993.9hPa",
+        "humidity": "75.1%",
+        "cloud": "50%"
+      },
+      {
+        "hour": "17:00",
+        "temperature": "32.1℃",
+        "rain": "无降水",
+        "wind_veloc": "0.1m/s",
+        "wind_direc": "无持续风向",
+        "pressure": "993.4hPa",
+        "humidity": "100%",
+        "cloud": "50%"
+      },
+      {
+        "hour": "20:00",
+        "temperature": "29.6℃",
+        "rain": "无降水",
+        "wind_veloc": "1.5m/s",
+        "wind_direc": "西北风",
+        "pressure": "993hPa",
+        "humidity": "100%",
+        "cloud": "50%"
+      },
+      {
+        "hour": "23:00",
+        "temperature": "26.5℃",
+        "rain": "无降水",
+        "wind_veloc": "1.4m/s",
+        "wind_direc": "无持续风向",
+        "pressure": "993.4hPa",
+        "humidity": "93.2%",
+        "cloud": "50%"
+      },
+      {
+        "hour": "02:00",
+        "temperature": "24℃",
+        "rain": "无降水",
+        "wind_veloc": "1.3m/s",
+        "wind_direc": "东北风",
+        "pressure": "993.8hPa",
+        "humidity": "95.4%",
+        "cloud": "10%"
+      },
+      {
+        "hour": "05:00",
+        "temperature": "23℃",
+        "rain": "无降水",
+        "wind_veloc": "1.4m/s",
+        "wind_direc": "东风",
+        "pressure": "994hPa",
+        "humidity": "91.8%",
+        "cloud": "10%"
+      }
+    ]
+  ]
+}

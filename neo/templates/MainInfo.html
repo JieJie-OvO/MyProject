@@ -1,0 +1,846 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>首页二</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../static/lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="../static/lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="../static/css/public.css" media="all">
+    <style>
+        .layui-card {
+            border: 1px solid #f2f2f2;
+            border-radius: 5px;
+        }
+
+        .icon {
+            margin-right: 10px;
+            color: #1aa094;
+        }
+
+        .icon-cray {
+            color: #ffb800 !important;
+        }
+
+        .icon-blue {
+            color: #1e9fff !important;
+        }
+
+        .icon-tip {
+            color: #ff5722 !important;
+        }
+
+        .layuimini-qiuck-module {
+            text-align: center;
+            margin-top: 10px
+        }
+
+        .layuimini-qiuck-module a i {
+            display: inline-block;
+            width: 100%;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            border-radius: 2px;
+            font-size: 30px;
+            background-color: #F8F8F8;
+            color: #333;
+            transition: all .3s;
+            -webkit-transition: all .3s;
+        }
+
+        .layuimini-qiuck-module a cite {
+            position: relative;
+            top: 2px;
+            display: block;
+            color: #666;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: 14px;
+        }
+
+        .welcome-module {
+            width: 100%;
+            height: 320px;
+        }
+
+        .panel {
+            background-color: #fff;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .05)
+        }
+
+        .panel-body {
+            padding: 10px
+        }
+
+        .panel-title {
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 12px;
+            color: inherit
+        }
+
+        .label {
+            display: inline;
+            padding: .2em .6em .3em;
+            font-size: 75%;
+            font-weight: 700;
+            line-height: 1;
+            color: #fff;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: .25em;
+            margin-top: .3em;
+        }
+
+        .layui-red {
+            color: red
+        }
+
+        .main_btn>p {
+            height: 40px;
+        }
+
+        .layui-bg-number {
+            background-color: #F8F8F8;
+        }
+
+        .layuimini-notice:hover {
+            background: #f6f6f6;
+        }
+
+        .layuimini-notice {
+            padding: 7px 16px;
+            clear: both;
+            font-size: 12px !important;
+            cursor: pointer;
+            position: relative;
+            transition: background 0.2s ease-in-out;
+        }
+
+        .layuimini-notice-title,
+        .layuimini-notice-label {
+            padding-right: 70px !important;
+            text-overflow: ellipsis !important;
+            overflow: hidden !important;
+            white-space: nowrap !important;
+        }
+
+        .layuimini-notice-title {
+            line-height: 28px;
+            font-size: 14px;
+        }
+
+        .layuimini-notice-extra {
+            position: absolute;
+            top: 50%;
+            margin-top: -8px;
+            right: 16px;
+            display: inline-block;
+            height: 16px;
+            color: #999;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layuimini-container">
+        <div class="layuimini-main">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md8">
+                    <div class="layui-row layui-col-space15">
+                        {% comment %} 视频模块 {% endcomment %}
+
+                        <div class="layui-col-md8">
+                            <div class="layui-card">
+                                <div class="layui-card-header"><i class="fa fa-line-chart icon"></i>水质信息展示</div>         
+                                <div class="layui-card-body">
+                                    <div class="welcome-module">
+                                        <div class="app">
+
+                                        </div>
+                                        
+                                        <div id="echarts-records" style="width: 100%; min-height: 250px;">
+                                            <!-- Placeholder for ECharts -->
+                                        </div>
+                                        
+                                        <div style="text-align: center;">
+                                            <button type="button" id="mybtn1" class="layui-btn layui-bg-blue">近1天</button>
+                                            <button type="button" id="mybtn2" class="layui-btn layui-bg-orange">近1周</button>
+                                            <button type="button" id="mybtn3" class="layui-btn layui-bg-red">近1月</button>
+                                            <button type="button" id="mybtn4" class="layui-btn layui-bg-purple">近1年</button>
+                                        </div>
+                                    </div>  
+                                </div>
+                            </div>
+                        </div>
+                        {% comment %} 实时水文模块 {% endcomment %}
+                        <div class="layui-col-md4">
+                            <div class="layui-card">
+                                <div class="layui-card-header"><i class="fa fa-credit-card icon icon-blue"></i>水文实时数据
+                                </div>
+                                <div class="layui-card-body">
+                                    <div class="welcome-module">
+                                        <div class="layui-row layui-col-space5 layuimini-qiuck">
+                                            <style>
+                                                progress {
+                                                    width: 120px;
+                                                    align: center;
+                                                }
+                                            </style>
+                                            
+                                            <div>
+                                                <span>水温(℃):</span>
+                                                <progress max="40" value="{{data.AvgData.temp}}"></progress>
+                                                <span>{{data.AvgData.temp}}</span>
+                                            </div>
+                                            <div>
+                                                <span>pH:</span>
+                                                <progress max="15" value="{{data.AvgData.pH}}"></progress>
+                                                <span>{{data.AvgData.pH}}</span>
+                                            </div>
+                                            <div>
+                                                <span>溶解氧(mg/L):</span>
+                                                <progress max="20" value="{{data.AvgData.Ox}}"></progress>
+                                                <span>{{data.AvgData.Ox}}</span>
+                                            </div>
+                                            <div>
+                                                <span>导电率(μS/cm):</span>
+                                                <progress max="3000" value="{{data.AvgData.Dao}}"></progress>
+                                                <span>{{data.AvgData.Dao}}</span>
+                                            </div>
+                                            <div>
+                                                <span>浊度(NTU):</span>
+                                                <progress max="60" value="{{data.AvgData.Zhuodu}}"></progress>
+                                                <span> {{data.AvgData.Zhuodu}}</span>
+                                            </div>
+                                            <div>
+                                                <span>盐度(mg/L):</span>
+                                                <progress max="10" value="{{data.AvgData.Yandu}}"></progress>
+                                                <span> {{data.AvgData.Yandu}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% comment %} 历史水文模块 {% endcomment %}
+                        <div class="layui-col-md12">
+                            <div class="layui-card">
+                                <div class="layui-card-header"><i class="fa fa-warning icon"></i>视频监控</div>
+                               
+                                <div class="layui-row layui-col-space10">
+                                    <div class="layui-tab">
+                                        <ul class="layui-tab-title">
+                                            <li class="layui-this">摄像头1</li>
+                                            <li>摄像头2</li>
+                                            <li>摄像头3</li>
+                                            <li id="uploadTab" style="float: right;">
+                                                <button type="button" class="layui-btn layui-btn-normal" id="uploadButton">更新信号源</button>
+                                            </li>
+                                        </ul>
+                                       
+                                        <style>
+                                            .centered-video {
+                                                width: 90%;
+                                                display: block;
+                                                margin: 0 auto; /* 居中 */
+                                            }
+                                        </style>
+                                        <div class="layui-tab-content">
+                                            <div class="layui-tab-item layui-show">
+                                                <video id="video1"  class="centered-video" controls>
+                                                    <source type="video/mp4">
+                                                    <p>您的浏览器不支持 HTML5 视频。</p>
+                                                </video>
+                                            </div>
+                                            <div class="layui-tab-item ">
+                                                <video id="video2"  class="centered-video" controls>
+                                                    <source type="video/mp4">
+                                                    <p>您的浏览器不支持 HTML5 视频。</p>
+                                                </video>
+                                            </div>
+                                            <div class="layui-tab-item">
+                                                <video id="video3"  class="centered-video" controls>
+                                                    <source type="video/mp4">
+                                                    <p>您的浏览器不支持 HTML5 视频。</p>
+                                                </video>
+                                            </div>
+                                        </div>                              
+                                    </div>
+
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-col-md4">
+                {% if permission > 1%}
+                    {% comment %} 数据处理与获取 {% endcomment %}
+                    <div class="layui-card">
+                        <div class="layui-card-header"><i class="fa fa-bullhorn icon icon-tip"></i>数据处理与获取</div>
+                        <div class="layui-card-body">
+                            <div>
+                                <a href="http://127.0.0.1:8000/water/add"><button type="button"
+                                        class="layui-btn layui-btn-normal">数据添加</button></a> 
+                                <a href="http://127.0.0.1:8000/water/water_export" download><button
+                                        type="button" class="layui-btn layui-btn-normal">数据导出</button></a>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                    {% comment %} 系统公告 {% endcomment %}
+                    <div class="layui-card">
+                        <div class="layui-card-header"><i class="fa fa-bullhorn icon icon-tip"></i>系统公告</div>
+                        <div class="layui-card-body layui-text">
+                            <div class="layuimini-notice">
+                                <div class="layuimini-notice-title">5月鱼群健康报告</div>
+                                <div class="layuimini-notice-extra">2024-07-11 23:06</div>
+                                <div class="layuimini-notice-content layui-hide">
+                                    todo(养殖用户提交，管理用户审批)
+                                </div>
+                            </div>
+                            <div class="layuimini-notice">
+                                <div class="layuimini-notice-title">5月水域环境报告</div>
+                                <div class="layuimini-notice-extra">2024-07-11 12:57</div>
+                                <div class="layuimini-notice-content layui-hide">
+                                    todo(养殖用户提交，管理用户审批)
+                                </div>
+                            </div>
+                            <div class="layuimini-notice">
+                                <div class="layuimini-notice-title">5月设备运行报告</div>
+                                <div class="layuimini-notice-extra">2024-07-05 14:28</div>
+                                <div class="layuimini-notice-content layui-hide">
+                                    todo(养殖用户提交，管理用户审批)
+                                </div>
+                            </div>
+                            <div class="layuimini-notice">
+                                <div class="layuimini-notice-title">5月气象变化报告</div>
+                                <div class="layuimini-notice-extra">2024-07-04 11:02</div>
+                                <div class="layuimini-notice-content layui-hide">
+                                    todo(养殖用户提交，管理用户审批)
+                                </div>
+                            </div>
+                            <div class="layuimini-notice">
+                                <div class="layuimini-notice-title">5月网站运维报告</div>
+                                <div class="layuimini-notice-extra">2024-06-17 11:55</div>
+                                <div class="layuimini-notice-content layui-hide">
+                                    todo(养殖用户提交，管理用户审批)
+                                </div>
+                            </div>
+                            <div class="layuimini-notice">
+                                <div class="layuimini-notice-title">5月用户反馈报告</div>
+                                <div class="layuimini-notice-extra">2024-06-13 14:53</div>
+                                <div class="layuimini-notice-content layui-hide">
+                                    todo(养殖用户提交，管理用户审批)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% comment %} 设备状态 {% endcomment %}
+                    <div class="layui-card">
+                        <div class="layui-card-header"><i class="fa fa-fire icon"></i>设备状态</div>
+                        <div class="layui-card-body layui-text">
+                            <table class="layui-table">
+                                <colgroup>
+                                    <col width="100">
+                                    <col>
+                                </colgroup>
+                                <div>
+                                    <tr>
+                                        <td>设备名称</td>
+                                        <td>设备ID</td>
+                                        <td>设备状态</td>
+                                    </tr>
+                                </div>
+                                <div>
+                                    <tr>
+                                        <td>摄像头1</td>
+                                        <td>001</td>
+                                        <td>正常</td>
+                                    </tr>
+                                </div>
+                                <div>
+                                    <tr>
+                                        <td>摄像头2</td>
+                                        <td>002</td>
+                                        <td>正常</td>
+                                    </tr>
+                                </div>
+                                <div>
+                                    <tr>
+                                        <td>摄像头3</td>
+                                        <td>003</td>
+                                        <td>正常</td>
+                                    </tr>
+                                </div>
+                                <div>
+                                    <tr>
+                                        <td>温度检测器1</td>
+                                        <td>004</td>
+                                        <td>正常</td>
+                                    </tr>
+                                </div>
+                                <div>
+                                    <tr>
+                                        <td>温度检测器2</td>
+                                        <td>005</td>
+                                        <td>正常</td>
+                                    </tr>
+                                </div>
+                                <div>
+                                    <tr>
+                                        <td>清洁器</td>
+                                        <td>005</td>
+                                        <td>正常</td>
+                                    </tr>
+                                </div>
+                                <div>
+                                    <tr>
+                                        <td>ph检测器</td>
+                                        <td>006</td>
+                                        <td>正常</td>
+                                    </tr>
+                                </div>
+                                <div>
+                                    <tr>
+                                        <td>水质检测器</td>
+                                        <td>007</td>
+                                        <td>正常</td>
+                                    </tr>
+                                </div>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../static/lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+    <script src="../static/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+    <script>
+        // 在页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 检查是否有错误信息
+            var error = '{{ error }}';
+            if (error) {
+                // 如果有错误信息，使用layui的弹出框显示错误信息
+                layui.use('layer', function(){
+                    var layer = layui.layer;
+                    layer.alert(error, {icon: 2});
+                });
+            }
+        });
+    </script>
+    <script>
+        layui.use('layer', function(){
+            var layer = layui.layer;
+    
+            // 点击上传文件按钮时弹出上传框
+            document.getElementById('uploadButton').addEventListener('click', function () {
+                layer.open({
+                    type: 1,
+                    title: '更新信号源',
+                    area: ['500px', '300px'],
+                    content: `
+                    <div style="padding: 20px;">
+                        <form method="post" enctype="multipart/form-data" action="http://127.0.0.1:8000/pic/upload_video">
+                            {% csrf_token %}
+                            <p>选择上传位置：</p>
+                            <input type="radio" id="type1" name="upload_type" value="1" checked>
+                            <label for="type1">摄像头1</label><br>
+                            <input type="radio" id="type2" name="upload_type" value="2">
+                            <label for="type2">摄像头2</label><br>
+                            <input type="radio" id="type3" name="upload_type" value="3">
+                            <label for="type3">摄像头3</label><br><br>
+                            <input type="file" id="video_file" name="video_file"><br><br>
+                            <button type="submit">修改信号源</button>
+                        </form>
+                    </div>
+                    `
+                });
+            });
+        });
+    </script>
+    <script>
+        function updateVideoSource(videoId, src) {
+            var video = document.getElementById(videoId);
+            var source = video.querySelector('source');
+            var timestamp = new Date().getTime();
+            source.src = src + "?v=" + timestamp;
+            video.load();
+        }
+    
+        updateVideoSource('video1', '../static/video/1.mp4');
+        updateVideoSource('video2', '../static/video/2.mp4');
+        updateVideoSource('video3', '../static/video/3.mp4');
+    </script>
+    {% comment %} 曲线图数据更新 {% endcomment %}
+    <script>
+    
+    layui.use(['layer', 'echarts'], function () {
+        var $ = layui.jquery,
+            layer = layui.layer,
+            echarts = layui.echarts;
+    
+    $.ajax({
+            url: "http://127.0.0.1:8000/water/get_water_info",
+            method: "GET",
+            success: function (data) {
+                var echartsRecords = echarts.init(document.getElementById('echarts-records'), 'walden');
+                var optionRecords = {
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['水温(℃)', 'pH', '溶解氧(mg/L)', '导电率(μS/cm)', '浊度(NTU)', '盐度(mg/L)']
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: ['0', '1', '2', '3', '4', '5', '6']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [
+                    {
+                        name: '水温(℃)',
+                        type: 'line',
+                        data: data[0].temp
+                    },
+                    {
+                        name: 'pH',
+                        type: 'line',
+                        data: data[0].pH
+                    },
+                    {
+                        name: '溶解氧(mg/L)',
+                        type: 'line',
+                        data: data[0].Ox
+                    },
+                    {
+                        name: '导电率(μS/cm)',
+                        type: 'line',
+                        data: data[0].Dao
+                    },
+                    {
+                        name: '浊度(NTU)',
+                        type: 'line',
+                        data: data[0].Zhuodu
+                    },
+                    {
+                        name: '盐度(mg/L)',
+                        type: 'line',
+                        data: data[0].Yandu
+                    }
+                ]
+            };
+            echartsRecords.setOption(optionRecords);
+
+            var mybtn1 = document.getElementById("mybtn1");
+            mybtn1.onclick = function (){
+                echartsRecords.setOption({
+                    series: [
+                    {
+                        name: '水温(℃)',
+                        type: 'line',
+                        data: data[0].temp
+                    },
+                    {
+                        name: 'pH',
+                        type: 'line',
+                        data: data[0].pH
+                    },
+                    {
+                        name: '溶解氧(mg/L)',
+                        type: 'line',
+                        data: data[0].Ox
+                    },
+                    {
+                        name: '导电率(μS/cm)',
+                        type: 'line',
+                        data: data[0].Dao
+                    },
+                    {
+                        name: '浊度(NTU)',
+                        type: 'line',
+                        data: data[0].Zhuodu
+                    },
+                    {
+                        name: '盐度(mg/L)',
+                        type: 'line',
+                        data: data[0].Yandu
+                    }
+                ]
+                });
+            };
+
+
+            var mybtn2 = document.getElementById("mybtn2");
+            mybtn2.onclick = function (){
+                echartsRecords.setOption({
+                    series: [
+                    {
+                        name: '水温(℃)',
+                        type: 'line',
+                        data: data[1].temp
+                    },
+                    {
+                        name: 'pH',
+                        type: 'line',
+                        data: data[1].pH
+                    },
+                    {
+                        name: '溶解氧(mg/L)',
+                        type: 'line',
+                        data: data[1].Ox
+                    },
+                    {
+                        name: '导电率(μS/cm)',
+                        type: 'line',
+                        data: data[1].Dao
+                    },
+                    {
+                        name: '浊度(NTU)',
+                        type: 'line',
+                        data: data[1].Zhuodu
+                    },
+                    {
+                        name: '盐度(mg/L)',
+                        type: 'line',
+                        data: data[1].Yandu
+                    }
+                ]
+                });
+            };
+
+
+            var mybtn3 = document.getElementById("mybtn3");
+            mybtn3.onclick = function (){
+                echartsRecords.setOption({
+                    series: [
+                    {
+                        name: '水温(℃)',
+                        type: 'line',
+                        data: data[2].temp
+                    },
+                    {
+                        name: 'pH',
+                        type: 'line',
+                        data: data[2].pH
+                    },
+                    {
+                        name: '溶解氧(mg/L)',
+                        type: 'line',
+                        data: data[2].Ox
+                    },
+                    {
+                        name: '导电率(μS/cm)',
+                        type: 'line',
+                        data: data[2].Dao
+                    },
+                    {
+                        name: '浊度(NTU)',
+                        type: 'line',
+                        data: data[2].Zhuodu
+                    },
+                    {
+                        name: '盐度(mg/L)',
+                        type: 'line',
+                        data: data[2].Yandu
+                    }
+                ]
+                });
+            };
+
+            var mybtn4 = document.getElementById("mybtn4");
+            mybtn4.onclick = function (){
+                echartsRecords.setOption({
+                    series: [
+                    {
+                        name: '水温(℃)',
+                        type: 'line',
+                        data: data[3].temp
+                    },
+                    {
+                        name: 'pH',
+                        type: 'line',
+                        data: data[3].pH
+                    },
+                    {
+                        name: '溶解氧(mg/L)',
+                        type: 'line',
+                        data: data[3].Ox
+                    },
+                    {
+                        name: '导电率(μS/cm)',
+                        type: 'line',
+                        data: data[3].Dao
+                    },
+                    {
+                        name: '浊度(NTU)',
+                        type: 'line',
+                        data: data[3].Zhuodu
+                    },
+                    {
+                        name: '盐度(mg/L)',
+                        type: 'line',
+                        data: data[3].Yandu
+                    }
+                ]
+                });
+            };
+
+            },
+        });
+
+// echarts 窗口缩放自适应
+window.onresize = function () {
+            echartsRecords.resize();
+            echartsRecords1.resize();
+            echartsDataset.resize();
+            echartsMap.resize();
+            echartsGauge.resize();
+        }
+
+    });
+    </script>
+
+
+    <script>
+        layui.use(['layer', 'miniTab', 'echarts'], function () {
+            var $ = layui.jquery,
+                layer = layui.layer,
+                miniTab = layui.miniTab,
+                echarts = layui.echarts;
+
+            miniTab.listen();
+
+            /**
+             * 查看公告信息
+             **/
+            $('body').on('click', '.layuimini-notice', function () {
+                var title = $(this).children('.layuimini-notice-title').text(),
+                    noticeTime = $(this).children('.layuimini-notice-extra').text(),
+                    content = $(this).children('.layuimini-notice-content').html();
+                var html = '<div style="padding:15px 20px; text-align:justify; line-height: 22px;border-bottom:1px solid #e2e2e2;background-color: #2f4056;color: #ffffff">\n' +
+                    '<div style="text-align: center;margin-bottom: 20px;font-weight: bold;border-bottom:1px solid #718fb5;padding-bottom: 5px"><h4 class="text-danger">' + title + '</h4></div>\n' +
+                    '<div style="font-size: 12px">' + content + '</div>\n' +
+                    '</div>\n';
+                parent.layer.open({
+                    type: 1,
+                    title: '系统公告' + '<span style="float: right;right: 1px;font-size: 12px;color: #b1b3b9;margin-top: 1px">' + noticeTime + '</span>',
+                    area: '300px;',
+                    shade: 0.8,
+                    id: 'layuimini-notice',
+                    btn: ['查看', '取消'],
+                    btnAlign: 'c',
+                    moveType: 1,
+                    content: html,
+                    success: function (layero) {
+                        var btn = layero.find('.layui-layer-btn');
+                        btn.find('.layui-layer-btn0').attr({
+                            href: 'http://127.0.0.1:8000/404',
+                            target: '_blank'
+                        });
+                    }
+                });
+            });
+
+            /**
+             * 报表功能(todo)
+             */
+            var echartsRecords = echarts.init(document.getElementById('echarts-records'), 'walden');
+            var optionRecords = {
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['水温(℃)', 'pH', '溶解氧(mg/L)', '导电率(μS/cm)', '浊度(NTU)', '盐度(mg/L)']
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: ['0', '1', '2', '3', '4', '5', '6']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [
+                    {
+                        name: '水温(℃)',
+                        type: 'line',
+                        data: [120, 132, 101, 134, 90, 230, 210]
+                    },
+                    {
+                        name: 'pH',
+                        type: 'line',
+                        data: [220, 182, 191, 234, 290, 330, 310]
+                    },
+                    {
+                        name: '溶解氧(mg/L)',
+                        type: 'line',
+                        data: [150, 232, 201, 154, 190, 330, 410]
+                    },
+                    {
+                        name: '导电率(μS/cm)',
+                        type: 'line',
+                        data: [320, 332, 301, 334, 390, 330, 320]
+                    },
+                    {
+                        name: '浊度(NTU)',
+                        type: 'line',
+                        data: [820, 932, 901, 934, 1290, 1330, 1320]
+                    },
+                    {
+                        name: '盐度(mg/L)',
+                        type: 'line',
+                        data: [124, 967, 789, 345, 1290, 1330, 1320]
+                    }
+                ]
+            };
+            echartsRecords.setOption(optionRecords);
+
+            // echarts 窗口缩放自适应
+            window.onresize = function () {
+                echartsRecords.resize();
+            }
+
+        });
+    </script>
+</body>
+
+
+</html>

@@ -1,0 +1,128 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../static/lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="../static/css/public.css" media="all">
+
+    <style>
+        .layui-input-block {
+            display: flex;
+            align-items: center;
+            /* 垂直居中对齐 */
+        }
+
+        .layui-input-block input[type="text"] {
+            margin-right: 5px;
+            /* 右边距 */
+        }
+
+        .layui-input-block span {
+            white-space: nowrap;
+            /* 防止文本换行 */
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- <div class="layuimini-container"> -->
+    <div class="layuimini-main">
+        <form class="layui-form" action="http://localhost:8000/fishbaike/add" lay-filter="example" method="post"
+            enctype="multipart/form-data" style="width: 800px; height: 30px;">
+            <div class="layui-form-item">
+                <label class="layui-form-label">正式名*</label>
+                <div class="layui-input-block">
+                    <textarea id="name" name="name" required placeholder="正式名" maxlength="32" rows="1"
+                        cols="32"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">别名</label>
+                <div class="layui-input-block">
+                    <textarea id="alias" name="alias" placeholder="别名" maxlength="128" rows="1" cols="32"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">分布*</label>
+                <div class="layui-input-block">
+                    <textarea id="distribution" name="distribution" required placeholder="分布" maxlength="256" rows="1"
+                        cols="32"></textarea>
+
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">食物*</label>
+                <div class="layui-input-block">
+                    <textarea id="food" name="food" required placeholder="食物" maxlength="256" rows="1"
+                        cols="32"></textarea>
+
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">形态*</label>
+                <div class="layui-input-block">
+                    <textarea id="appearance" name="appearance" required placeholder="形态" maxlength="1024" rows="4"
+                        cols="32"></textarea>
+
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">简介*</label>
+                <div class="layui-input-block">
+                    <textarea id="brief_intro" name="brief_intro" required placeholder="简介" maxlength="2048" rows="4"
+                        cols="32"></textarea>
+
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">图片</label>
+                <div class="layui-input-block">
+                    <input id="image_inputs" name="image_inputs" required type="file" multiple accept="image/*" />
+                </div>
+                <div id="image_show" class="layui-flow-more">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+<script src="../static/lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+<script>
+    // 上传图片预览
+    document.getElementById('image_inputs').addEventListener('change', function (event) {
+        const files = event.target.files;
+        const img_show_container = document.getElementById('image_show');
+        img_show_container.innerHTML = '';
+        Array.from(files).forEach(file => {
+            if (file.type.match('image.*')) {
+                const reader = new FileReader();
+                reader.onload = (function (aImg) {
+                    const img = document.createElement('img');
+                    img.src = aImg.target.result;
+                    img.width = 150;
+                    img.onload = function () {
+                        URL.revokeObjectURL(img.src);
+                    };
+                    img_show_container.appendChild(img);
+                });
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+
+</script>
+
+
+</html>

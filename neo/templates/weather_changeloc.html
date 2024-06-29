@@ -1,0 +1,59 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../static/lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="../static/css/public.css" media="all">
+
+    <style>
+        .layui-input-block {
+            display: flex;
+            align-items: center;
+            /* 垂直居中对齐 */
+        }
+
+        .layui-input-block input[type="text"] {
+            margin-right: 5px;
+            /* 右边距 */
+        }
+
+        .layui-input-block span {
+            white-space: nowrap;
+            /* 防止文本换行 */
+        }
+    </style>
+
+</head>
+
+<body>
+    <form id="locationForm" action="http://127.0.0.1:8000/weather/changeloc" method="post">
+        {% for prov, city_list in prov_city_dict.items %}
+        <fieldset>
+            <legend>{{ prov }}</legend>
+            {% for city in city_list %}
+            <label class="layui-input-inline">
+                {% if prov == cur_prov and city == cur_city %}
+                <input type="radio" name="city" value="{{ prov }}-{{ city }}" checked>
+                {% else %}
+                <input type="radio" name="city" value="{{ prov }}-{{ city }}">
+                {% endif %}
+                <span>{{ city }}</span>
+            </label>
+            {% endfor %}
+        </fieldset>
+        {% endfor %}
+        <input type="submit" value="确认选择" class="layui-btn layui-btn-normal" />
+    </form>
+</body>
+
+</html>
+
+<script src="../static/lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+
+</html>

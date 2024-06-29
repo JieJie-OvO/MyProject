@@ -1,0 +1,339 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../static/lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="../static/css/public.css" media="all">
+
+    <style>
+        .layui-input-block {
+            display: flex;
+            align-items: center; /* 垂直居中对齐 */
+        }
+        
+        .layui-input-block input[type="text"] {
+            margin-right: 5px; /* 右边距 */
+        }
+
+        .layui-input-block span {
+            white-space: nowrap; /* 防止文本换行 */
+        }
+    </style>
+
+<style>
+    /* CSS样式代码 */
+    #date_info {
+        width: 200px !important; /* 强制应用宽度 */
+        height: 30px!important; /* 强制应用宽度 */
+    }
+    
+  </style>
+
+
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+            <legend>填写水质信息（没有填写的信息会默认一个信息来进行记录）</legend>
+        </fieldset>
+        <form class="layui-form" action="http://localhost:8000/water/add" lay-filter="example" method="post"
+        style="width: 200px; height: 30px;" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">日期</label>
+                <div class="layui-input-block">
+                    <!-- 添加自定义类名用于CSS样式 -->
+                    <input type="date" name="date1" id="date_info"
+                            placeholder="请输入日期"  value="2024-06-01">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">水温</label>
+                <div class="layui-input-block">
+                    <input type="text" name="temperature1" lay-filter="aihao" inputmode="numeric" maxlength="5" placeholder="请输入温度" id="temperature_info"
+                    style="width: 200px; height: 30px;" >
+                    <span>℃</span>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">PH</label>
+                <div class="layui-input-block">
+                    <input type="text" name="PH1" lay-filter="aihao" inputmode="numeric" maxlength="5" placeholder="请输入PH" id="PH_info"
+                    style="width: 200px; height: 30px;" >
+                    <span>无量纲</span>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">溶氧量</label>
+                <div class="layui-input-block">
+                    <input type="text" name="Ox1" lay-filter="aihao" inputmode="numeric" maxlength="5" placeholder="请输入溶氧量" id="rongyang_info"
+                    style="width: 200px; height: 30px;" >
+                    <span>mg/L</span>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">导电率</label>
+                <div class="layui-input-block">
+                    <input type="text" name="Dao1" lay-filter="aihao" inputmode="numeric" maxlength="5" placeholder="请输入导电率" id="Dao_info"
+                    style="width: 200px; height: 30px;" >
+                    <span>μS/cm</span>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">浊度</label>
+                <div class="layui-input-block">
+                    <input type="text" name="Zhuodu1" lay-filter="aihao" inputmode="numeric" maxlength="5" placeholder="请输入浊度" id="Zhuodu_info"
+                    style="width: 200px; height: 30px;" >
+                    <span>NTU</span>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">高猛酸盐指数</label>
+                <div class="layui-input-block">
+                    <input type="text" name="gaomeng1" lay-filter="aihao" inputmode="numeric" maxlength="5" placeholder="请输入高猛酸盐指数" id="gaomeng_info"
+                    style="width: 200px; height: 30px;" >
+                    <span>mg/L</span>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">氨氮</label>
+                <div class="layui-input-block">
+                    <input type="text" name="andan1" lay-filter="aihao" inputmode="numeric" maxlength="5" placeholder="请输入氨氮" id="andan_info"
+                    style="width: 200px; height: 30px;" >
+                    <span>mg/L</span>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">总磷</label>
+                <div class="layui-input-block">
+                    <input type="text" name="zonglin1" lay-filter="aihao" inputmode="numeric" maxlength="5" placeholder="请输入总磷" id="zonglin_info"
+                    style="width: 200px; height: 30px;" >
+                    <span>mg/L</span>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">总氮</label>
+                <div class="layui-input-block">
+                    <input type="text" name="zongdan1" lay-filter="aihao" inputmode="numeric" maxlength="5" placeholder="请输入总氮" id="zongdan_info"
+                    style="width: 200px; height: 30px;" >
+                    <span>mg/L</span>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="../static/lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+<script>
+    // 获取输入框元素
+    var input1 = document.getElementById('temperature_info');
+
+    // 为输入框添加 input 事件监听器
+    input1.addEventListener('input', function() {
+        // 限制输入的最小值和最大值
+        var value = parseInt(this.value, 10);
+        var minVal = 0; // 设置最小值
+        var maxVal = 50; // 设置最大值
+
+        if (value < minVal) {
+            this.value = minVal; // 如果输入小于最小值，设置为最小值
+        } else if (value > maxVal) {
+            this.value = maxVal; // 如果输入大于最大值，设置为最大值
+        }
+    });
+
+
+    var input2 = document.getElementById('PH_info');
+    input2.addEventListener('input', function() {
+        var value = parseFloat(this.value);
+        var minVal = 0.0;
+        var maxVal = 10.0;
+
+        // 检查value是否为有效的浮点数
+        if (isNaN(value)) {
+            // 如果不是有效的浮点数，则重置为空字符串或提示信息
+            this.value = ''; // 或者可以设置为其他提示信息
+        } else {
+            // 如果是有效的浮点数，则检查是否在指定范围内
+            if (value < minVal) {
+                this.value = minVal; // 如果输入小于最小值，设置为最小值
+            } else if (value > maxVal) {
+                this.value = maxVal; // 如果输入大于最大值，设置为最大值
+            }
+        }
+    });
+
+    var input3 = document.getElementById('rongyang_info');
+    input3.addEventListener('input', function() {
+        var value = parseFloat(this.value);
+        var minVal = 0.0;
+        var maxVal = 20.0;
+
+        if (isNaN(value)) {
+            this.value = '';
+        } else {
+            if (value < minVal) {
+                this.value = minVal;
+            } else if (value > maxVal) {
+                this.value = maxVal;
+            }
+        }
+    });
+
+    var input4 = document.getElementById('gaomeng_info');
+    input4.addEventListener('input', function() {
+        var value = parseFloat(this.value);
+        var minVal = 0.0;
+        var maxVal = 15.0;
+
+        if (isNaN(value)) {
+            this.value = '';
+        } else {
+            if (value < minVal) {
+                this.value = minVal;
+            } else if (value > maxVal) {
+                this.value = maxVal;
+            }
+        }
+    });
+
+    var input5 = document.getElementById('andan_info');
+    input5.addEventListener('input', function() {
+        var value = parseFloat(this.value);
+        var minVal = 0.0;
+        var maxVal = 2.0;
+
+        if (isNaN(value)) {
+            this.value = '';
+        } else {
+            if (value < minVal) {
+                this.value = minVal;
+            } else if (value > maxVal) {
+                this.value = maxVal;
+            }
+        }
+    });
+
+    var input6 = document.getElementById('zonglin_info');
+    input6.addEventListener('input', function() {
+        var value = parseFloat(this.value);
+        var minVal = 0.0;
+        var maxVal = 1.0;
+
+        if (isNaN(value)) {
+            this.value = '';
+        } else {
+            if (value < minVal) {
+                this.value = minVal;
+            } else if (value > maxVal) {
+                this.value = maxVal;
+            }
+        }
+    });
+
+    var input7 = document.getElementById('zongdan_info');
+    input7.addEventListener('input', function() {
+        var value = parseFloat(this.value);
+        var minVal = 0.0;
+        var maxVal = 2.0;
+
+        if (isNaN(value)) {
+            this.value = '';
+        } else {
+            if (value < minVal) {
+                this.value = minVal;
+            } else if (value > maxVal) {
+                this.value = maxVal;
+            }
+        }
+    });
+
+    var input8 = document.getElementById('Dao_info');
+    input8.addEventListener('input', function() {
+        var value = parseFloat(this.value);
+        var minVal = 0.0;
+        var maxVal = 1000000.0;
+
+        if (isNaN(value)) {
+            this.value = '';
+        } else {
+            if (value < minVal) {
+                this.value = minVal;
+            } else if (value > maxVal) {
+                this.value = maxVal;
+            }
+        }
+    });
+
+    var input9 = document.getElementById('Zhuodu_info');
+    input9.addEventListener('input', function() {
+        var value = parseFloat(this.value);
+        var minVal = 0.0;
+        var maxVal = 100.0;
+
+        if (isNaN(value)) {
+            this.value = '';
+        } else {
+            if (value < minVal) {
+                this.value = minVal;
+            } else if (value > maxVal) {
+                this.value = maxVal;
+            }
+        }
+    });
+
+</script>
+
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
+
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+        //创建一个编辑器
+        var editIndex = layedit.build('LAY_demo_editor');
+
+        //监听指定开关
+        form.on('switch(switchTest)', function (data) {
+            layer.msg('开关checked：' + (this.checked ? 'true' : 'false'), {
+                offset: '6px'
+            });
+            layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+        });
+
+        //监听提交
+        form.on('submit(demo1)', function (data) {
+            layer.alert(JSON.stringify(data.field), {
+                title: '最终的提交信息'
+            })
+            return true;
+        });
+
+        //表单初始赋值
+        form.val('example', {
+            "interest": 0
+        })
+    });
+</script>
+
+</body>
+</html>

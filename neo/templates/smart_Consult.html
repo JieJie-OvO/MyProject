@@ -1,0 +1,231 @@
+<html class="x-admin-sm">
+
+<head>
+    <style>
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            animation: spin 1s linear infinite;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>智能问诊</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+        content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="stylesheet" href="../static/css/layui.css" media="all">
+    <link rel="stylesheet" href="../static/css/layui.mobile.css">
+    <link rel="stylesheet" href="../static/css/font.css">
+    <link rel="stylesheet" href="../static/css/xadmin.css">
+    <script src="../static/js/layui.js"></script>
+</head>
+
+<body>
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-body">
+                        <blockquote class="layui-elem-quote">
+                            我们会根据您的症状来为您智能推荐建议服用的中成药和方剂，推荐得到的结果有可能返回值为空，即无法显示对应的节点，请检查是否拼写正确，以及可以更换表达方式。
+                            <p style="white-space:pre">一些tips: 1、鼠标悬浮在节点上方可以显示节点详情 2、鼠标点击节点可以打开节点详情页面</p>
+                        </blockquote>
+                        <form class="layui-form" action="" method="POST">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">描述您的症状</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="attending" required lay-verify="required" placeholder="请输入症状"
+                                        autocomplete="on" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+                        <div id="main" style="width: 100%;height:600px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../static/js/layui.js"></script>
+    <script>
+        layui.use('form', function () {
+            var form = layui.form;
+        });
+    </script>
+    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
+    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/extension/bmap.min.js"></script>
+    <script type="text/javascript">
+        function hideLoadingSpinner() {
+            document.getElementById('loading-spinner').style.display = 'none';
+        }
+        var myChart = echarts.init(document.getElementById('main'));
+        var categories = ['中成药','方剂'];
+        link = [];
+
+        var jsonData = {{ result| safe }}; // 传入查询结果的json字典形式
+
+        var node = [];
+        for (var i = 0; i < jsonData.length; i++) {
+            var item = jsonData[i];
+            item.des = jsonData[i].name;
+            item.symbolSize = 60;
+            item.category = item.category-1;
+            node.push(item);
+        }
+        //console.log(node);
+        option = {
+            // 图的标题
+            title: {
+                text: '为您智能推荐的药物'
+            },
+            // 提示框的配置
+            tooltip: {
+                position: 'right',
+                trigger: 'item',
+                formatter: function (params) {
+                    var node = params.data;
+                    var str = '<div style="width:600px;padding:10px;box-sizing:border-box;border-radius:4px;position:fixed;top:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.8);font-size:14px;text-align:center;">';
+                    str += '<div style="display:flex;align-items:center;"><strong>' + node.des + '</strong></div>';
+                    var En2Ch = {
+                        'feature': "性味归经",
+                        "form": "形态",
+                        "attending": "临床应用",
+                        "function": "功效与作用",
+                        "warning": "使用禁忌",
+                        "alias": "别名",
+                        "place": "产地分布",
+                        "picture": "图片",
+                        "english_name": "英文名",
+                        "type": "类型",
+                        "composition": "组成",
+                        "usage": "用法",
+                        "source": "起点",
+                        "target": "终点",
+                        "name": "名称"
+                    };
+                    // 添加图片内容
+                    if (node.picture) {
+                        var imageStyle = 'max-width:100%;height:auto;';
+                        var loadingStyle = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);';
+                        var loadingHtml = '<div id="loading-spinner" style="' + loadingStyle + '">' +
+                            '<div style="border: 3px solid #f3f3f3;border-top: 3px solid #3498db;border-radius: 50%;width: 16px;height: 16px;animation: spin 2s linear infinite;"></div>' +
+                            '</div>';
+                        var imgHtml = '<img src="' + node.picture + '" style="' + imageStyle + '" onload="hideLoadingSpinner()">';
+
+                        str += '<div style="position:relative;">' + imgHtml + loadingHtml + '</div>';
+                    }
+
+                    // 添加节点属性
+                    for (var key in node) {
+                        if (key !== 'des' && key !== 'symbolSize' && key !== 'category' && key !== 'picture' && key !== 'label' && key !== 'name' && key !== 'emphasis') {
+                            str += '<div style="word-wrap: break-word; width: 100%;white-space:normal;text-align: left;"><span">' + En2Ch[key] + ':</span>' + node[key] + '</div>';
+                        }
+                    }
+
+                    str += '</div>';
+                    return str;
+                },
+
+            },
+
+            draggable: true,
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: {
+                        show: true
+                    },
+                    restore: {
+                        show: true
+                    },
+                    saveAsImage: {
+                        show: true
+                    }
+                }
+            },
+            legend: [{
+                // selectedMode: 'single',
+                data: categories.map(function (a) {
+                    return a.name;
+                })
+            }],
+            series: [{
+                type: 'graph', // 类型:关系图
+                layout: 'force', //图的布局，类型为力导图
+                symbolSize: 40, // 调整节点的大小
+                roam: true, // 是否开启鼠标缩放和平移漫游。默认不开启。如果只想要开启缩放或者平移,可以设置成 'scale' 或者 'move'。设置成 true 为都开启
+                edgeSymbol: ['circle', 'arrow'],
+                edgeSymbolSize: [2, 10],
+                edgeLabel: {
+                    normal: {
+                        textStyle: {
+                            fontSize: 12
+                        },
+                        show: true,
+                        formatter: function (x) {
+                            return x.data.name;
+                        }
+                    }
+                },
+                force: {
+                    repulsion: 2500,
+                    edgeLength: [10, 50]
+                },
+                draggable: true,
+                lineStyle: {
+                    normal: {
+                        width: 2,
+                        color: '#4b565b',
+                    }
+                },
+                label: {
+                    normal: {
+                        show: true,
+                        textStyle: {}
+                    }
+                },
+
+                // 数据
+                data: node,
+                links: link,
+                categories: categories,
+            }]
+        };
+
+        myChart.setOption(option);
+        myChart.on('click', function (params) {
+            if (params.dataType == 'node') {
+                var confirmResult = confirm("是否要打开该节点的详情页面？");
+                if (confirmResult) {
+                    var url = "http://www.a-hospital.com/w/" + params.name;
+                    var title = params.name + "-详情页";
+                    parent.xadmin.add_tab(title, url);
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>

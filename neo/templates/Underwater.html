@@ -1,0 +1,811 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>首页二</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../static/lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="../static/lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="../static/css/public.css" media="all">
+    <style>
+        .layui-card {
+            border: 1px solid #f2f2f2;
+            border-radius: 5px;
+        }
+
+        .icon {
+            margin-right: 10px;
+            color: #1aa094;
+        }
+
+        .icon-cray {
+            color: #ffb800 !important;
+        }
+
+        .icon-blue {
+            color: #1e9fff !important;
+        }
+
+        .icon-tip {
+            color: #ff5722 !important;
+        }
+
+        .layuimini-qiuck-module {
+            text-align: center;
+            margin-top: 10px
+        }
+
+        .layuimini-qiuck-module a i {
+            display: inline-block;
+            width: 100%;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            border-radius: 2px;
+            font-size: 30px;
+            background-color: #F8F8F8;
+            color: #333;
+            transition: all .3s;
+            -webkit-transition: all .3s;
+        }
+
+        .layuimini-qiuck-module a cite {
+            position: relative;
+            top: 2px;
+            display: block;
+            color: #666;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: 14px;
+        }
+
+        .welcome-module {
+            width: 100%;
+            height: 210px;
+        }
+
+        .panel {
+            background-color: #fff;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .05)
+        }
+
+        .panel-body {
+            padding: 10px
+        }
+
+        .panel-title {
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 12px;
+            color: inherit
+        }
+
+        .label {
+            display: inline;
+            padding: .2em .6em .3em;
+            font-size: 75%;
+            font-weight: 700;
+            line-height: 1;
+            color: #fff;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: .25em;
+            margin-top: .3em;
+        }
+
+        .layui-red {
+            color: red
+        }
+
+        .main_btn>p {
+            height: 40px;
+        }
+
+        .layui-bg-number {
+            background-color: #F8F8F8;
+        }
+
+        .layuimini-notice:hover {
+            background: #f6f6f6;
+        }
+
+        .layuimini-notice {
+            padding: 7px 16px;
+            clear: both;
+            font-size: 12px !important;
+            cursor: pointer;
+            position: relative;
+            transition: background 0.2s ease-in-out;
+        }
+
+        .layuimini-notice-title,
+        .layuimini-notice-label {
+            padding-right: 70px !important;
+            text-overflow: ellipsis !important;
+            overflow: hidden !important;
+            white-space: nowrap !important;
+        }
+
+        .layuimini-notice-title {
+            line-height: 28px;
+            font-size: 14px;
+        }
+
+        .layuimini-notice-extra {
+            position: absolute;
+            top: 50%;
+            margin-top: -8px;
+            right: 16px;
+            display: inline-block;
+            height: 16px;
+            color: #999;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layuimini-container">
+        <div class="layuimini-main">
+            <div class="layui-col-md9">
+                <div class="layui-row layui-col-space15">
+                    <div class="layui-col-md3">
+                        <table class="layui-table" style="text-align: center;">
+                            <colgroup>
+                                <col width="100">
+                                <col>
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th colspan="2" style="text-align: center;">鱼群</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>鱼种</td>
+                                    <td>{{ data.fish_species }}</td>
+                                </tr>
+                                <tr>
+                                    <td>平均身长</td>
+                                    <td>{{ data.mean_length }} cm</td>
+                                </tr>
+                                <tr>
+                                    <td>平均体重</td>
+                                    <td>{{ data.mean_weight }} kg</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="layui-col-md6">
+                        <table class="layui-table" style="text-align: center;">
+                            <colgroup>
+                                <col>
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center;">已保障养殖鱼群</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ data.fish_count }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="layui-col-md3">
+                        <table class="layui-table" style="text-align: center;">
+                            <colgroup>
+                                <col width="100">
+                                <col>
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th colspan="2" style="text-align: center;">设备</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>镜头</td>
+                                    <td>5+</td>
+                                </tr>
+                                <tr>
+                                    <td>云台</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td>声响</td>
+                                    <td>1</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="layui-row layui-col-space15">
+                    <div class="layui-card">
+                        <div id="echarts-records1" style="width: 100%;min-height:300px"></div>
+                    </div>
+                </div>
+                <div class="layui-row layui-col-space15">
+                    <div class="layui-col-md12">
+                        <div class="layui-card">
+                            <div class="layui-card-header"><i class="fa fa-line-chart icon"></i>报表统计</div>
+                            <div class="layui-card-body">
+                                <div id="echarts-records" style="width: 100%;min-height:300px"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-row layui-col-space15">
+                    <div class="layui-btn-container layui-col-md2">
+                        <button type="button" id="mybtn1" class="layui-btn layui-btn-radius">鱼类1质量</button>
+                        <button type="button" id="mybtn2" class="layui-btn layui-btn-normal layui-btn-radius">鱼类1尺寸</button>
+                        <button type="button" class="layui-btn layui-btn-warm layui-btn-radius"
+                            onclick="changeData('鱼类1生命')">鱼类1生命</button>
+                    </div>
+                    <div class="layui-btn-container layui-col-md2">
+                        <button type="button" id="mybtn3" class="layui-btn layui-btn-radius">鱼类2质量</button>
+                        <button type="button" id="mybtn4" class="layui-btn layui-btn-normal layui-btn-radius">鱼类2尺寸</button>
+                        <button type="button" class="layui-btn layui-btn-warm layui-btn-radius"
+                            onclick="changeData('鱼类2生命')">鱼类2生命</button>
+                    </div>
+                    <div class="layui-btn-container layui-col-md2">
+                        <button type="button" id="mybtn5" class="layui-btn layui-btn-radius">鱼类3质量</button>
+                        <button type="button" id="mybtn6" class="layui-btn layui-btn-normal layui-btn-radius">鱼类3尺寸</button>
+                        <button type="button" class="layui-btn layui-btn-warm layui-btn-radius"
+                            onclick="changeData('鱼类3生命')">鱼类3生命</button>
+                    </div>
+                    <div class="layui-btn-container layui-col-md2">
+                        <button type="button" id="mybtn7" class="layui-btn layui-btn-radius">鱼类4质量</button>
+                        <button type="button" id="mybtn8" class="layui-btn layui-btn-normal layui-btn-radius">鱼类4尺寸</button>
+                        <button type="button" class="layui-btn layui-btn-warm layui-btn-radius"
+                            onclick="changeData('鱼类4生命')">鱼类4生命</button>
+                    </div>
+                    <div class="layui-btn-container layui-col-md2">
+                        <button type="button" id="mybtn9" class="layui-btn layui-btn-radius">鱼类5质量</button>
+                        <button type="button" id="mybtn10" class="layui-btn layui-btn-normal layui-btn-radius">鱼类5尺寸</button>
+                        <button type="button" class="layui-btn layui-btn-warm layui-btn-radius"
+                            onclick="changeData('鱼类5生命')">鱼类5生命</button>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md3">
+                <div class="layui-card">
+                    <div class="layui-card-header"><i class="fa fa-fire icon"></i>硬件信息</div>
+                    <div class="layui-card-body layui-text">
+                        <table class="layui-table" style="text-align: center;">
+                            <colgroup>
+                                <col width="100">
+                                <col>
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th colspan="2" style="text-align: center;">网箱信息</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>网箱长度</td>
+                                    <td>100m</td>
+                                </tr>
+                                <tr>
+                                    <td>网箱宽度</td>
+                                    <td>50m</td>
+                                </tr>
+                                <tr>
+                                    <td>网箱深度</td>
+                                    <td>30m</td>
+                                </tr>
+                                <tr>
+                                    <td>网箱经度</td>
+                                    <td>128.034</td>
+                                </tr>
+                                <tr>
+                                    <td>网箱纬度</td>
+                                    <td>56.123</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="layui-table" style="text-align: center;">
+                            <colgroup>
+                                <col width="100">
+                                <col>
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th colspan="2" style="text-align: center;">水底传感器</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>运行时间</td>
+                                    <td>24天13小时43分钟</td>
+                                </tr>
+                                <tr>
+                                    <td>下次检修</td>
+                                    <td>35天后</td>
+                                </tr>
+                                <tr>
+                                    <td>保修过期</td>
+                                    <td>2035年02月01日</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="layui-card">
+                    <div class="layui-card-header"><i class="fa fa-fire icon"></i>鱼群种类占比信息</div>
+                    <div class="layui-card-body">
+                        <div id="echarts-pies" style="background-color:#ffffff;min-height:400px;padding: 10px">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+    <script src="../static/lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+    <script src="../static/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.0.2/echarts.min.js"></script> -->
+    <!-- <script src="../static/jslay-module/echarts/echarts.js" charset="utf-8"></script> -->
+<script>
+    layui.use(['layer', 'miniTab', 'echarts'], function () {
+        var $ = layui.jquery,
+            layer = layui.layer,
+            miniTab = layui.miniTab,
+            echarts = layui.echarts;
+
+        miniTab.listen();
+
+        /**
+         * 查看公告信息
+         **/
+        $('body').on('click', '.layuimini-notice', function () {
+            var title = $(this).children('.layuimini-notice-title').text(),
+                noticeTime = $(this).children('.layuimini-notice-extra').text(),
+                content = $(this).children('.layuimini-notice-content').html();
+            var html = '<div style="padding:15px 20px; text-align:justify; line-height: 22px;border-bottom:1px solid #e2e2e2;background-color: #2f4056;color: #ffffff">\n' +
+                '<div style="text-align: center;margin-bottom: 20px;font-weight: bold;border-bottom:1px solid #718fb5;padding-bottom: 5px"><h4 class="text-danger">' + title + '</h4></div>\n' +
+                '<div style="font-size: 12px">' + content + '</div>\n' +
+                '</div>\n';
+            parent.layer.open({
+                type: 1,
+                title: '系统公告' + '<span style="float: right;right: 1px;font-size: 12px;color: #b1b3b9;margin-top: 1px">' + noticeTime + '</span>',
+                area: '300px;',
+                shade: 0.8,
+                id: 'layuimini-notice',
+                btn: ['查看', '取消'],
+                btnAlign: 'c',
+                moveType: 1,
+                content: html,
+                success: function (layero) {
+                    var btn = layero.find('.layui-layer-btn');
+                    btn.find('.layui-layer-btn0').attr({
+                        href: 'https://gitee.com/zhongshaofa/layuimini',
+                        target: '_blank'
+                    });
+                }
+            });
+        });
+</script>
+
+<script>
+    layui.use(['layer', 'echarts'], function () {
+        var $ = layui.jquery,
+            layer = layui.layer,
+            echarts = layui.echarts;
+
+        /**
+         * 鱼群属性折线图
+         */
+        $.ajax({
+            url: "http://127.0.0.1:8000/fish/get_top_info",
+            method: "GET",
+            success: function (data) {
+                
+        var echartsRecords = echarts.init(document.getElementById('echarts-records'), 'walden');
+        var optionRecords = {
+            title: {
+                text: '鱼群属性分布图'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    label: {
+                        backgroundColor: '#6a7985'
+                    }
+                }
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: ['极低', '低', '较低', '中等', '较高', '高', '极高']
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value'
+                }
+            ],
+            series: [
+                {
+                    name: '鱼类1质量',
+                    type: 'line',
+                    areaStyle: {},
+                    data: data[0].weight
+                }
+            ]
+        };
+        echartsRecords.setOption(optionRecords);
+        
+        var mybtn1 = document.getElementById("mybtn1");
+        mybtn1.onclick = function () {
+            echartsRecords.setOption({
+                    series: [{
+                        name: '鱼类1质量', 
+                        type: 'line',
+                        areaStyle: {},
+                        data: data[0].weight
+                    }]
+                });
+        };
+        
+        var mybtn2 = document.getElementById("mybtn2");
+        mybtn2.onclick = function () {
+            echartsRecords.setOption({
+                    series: [{
+                        name: '鱼类1尺寸', 
+                        type: 'line',
+                        areaStyle: {},
+                        data: data[0].length
+                    }]
+                });
+        };
+        
+        var mybtn3 = document.getElementById("mybtn3");
+        mybtn3.onclick = function () {
+            echartsRecords.setOption({
+                    series: [{
+                        name: '鱼类2质量', 
+                        type: 'line',
+                        areaStyle: {},
+                        data: data[1].weight
+                    }]
+                });
+        };        
+
+        var mybtn4 = document.getElementById("mybtn4");
+        mybtn4.onclick = function () {
+            echartsRecords.setOption({
+                    series: [{
+                        name: '鱼类2尺寸', 
+                        type: 'line',
+                        areaStyle: {},
+                        data: data[1].length
+                    }]
+                });
+        };        
+        
+        var mybtn5 = document.getElementById("mybtn5");
+        mybtn5.onclick = function () {
+            echartsRecords.setOption({
+                    series: [{
+                        name: '鱼类3质量', 
+                        type: 'line',
+                        areaStyle: {},
+                        data: data[2].weight
+                    }]
+                });
+        };        
+
+        var mybtn6 = document.getElementById("mybtn6");
+        mybtn6.onclick = function () {
+            echartsRecords.setOption({
+                    series: [{
+                        name: '鱼类3尺寸', 
+                        type: 'line',
+                        areaStyle: {},
+                        data: data[2].length
+                    }]
+                });
+        };            
+                
+        var mybtn7 = document.getElementById("mybtn7");
+        mybtn7.onclick = function () {
+            echartsRecords.setOption({
+                    series: [{
+                        name: '鱼类4质量', 
+                        type: 'line',
+                        areaStyle: {},
+                        data: data[3].weight
+                    }]
+                });
+        };        
+
+        var mybtn8 = document.getElementById("mybtn8");
+        mybtn8.onclick = function () {
+            echartsRecords.setOption({
+                    series: [{
+                        name: '鱼类4尺寸', 
+                        type: 'line',
+                        areaStyle: {},
+                        data: data[3].length
+                    }]
+                });
+        };          
+        
+        var mybtn9 = document.getElementById("mybtn9");
+        mybtn9.onclick = function () {
+            echartsRecords.setOption({
+                    series: [{
+                        name: '鱼类5质量', 
+                        type: 'line',
+                        areaStyle: {},
+                        data: data[4].weight
+                    }]
+                });
+        };        
+
+        var mybtn10 = document.getElementById("mybtn10");
+        mybtn10.onclick = function () {
+            echartsRecords.setOption({
+                    series: [{
+                        name: '鱼类5尺寸', 
+                        type: 'line',
+                        areaStyle: {},
+                        data: data[4].length
+                    }]
+                });
+        };
+        
+                    },
+        });
+
+        /**
+         * 鱼群数量折线图
+         */
+        $.ajax({
+            url: "http://127.0.0.1:8000/fish/get_fish_change",
+            method: "GET",
+            success: function (data) {
+        var echartsRecords1 = echarts.init(document.getElementById('echarts-records1'), 'walden');
+        var dates = data.Date.map(function(date) {
+                    return date.slice(0, 7); // 截取日期字符串的前7个字符，即年份和月份
+                });
+        var optionRecords1 = {
+            title: {
+                text: '鱼群数量图'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    label: {
+                        backgroundColor: '#6a7985'
+                    }
+                }
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: dates
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value'
+                }
+            ],
+            series: [
+                {
+                    name: '所有鱼类',
+                    type: 'line',
+                    data: data.Count
+                }
+            ]
+        };
+        echartsRecords1.setOption(optionRecords1);
+                    },
+            error: function (error) {
+                console.log("Error:", error);
+            }
+        });
+
+        /**
+         * 玫瑰图表
+         */
+        
+        $.ajax({
+            url: "http://127.0.0.1:8000/fish/getTOP5",
+            method: "GET",
+            success: function (data) {
+                // 初始化 ECharts 图表
+                var echartsPies = echarts.init(document.getElementById('echarts-pies'), 'walden');
+                console.log("test!!!!!")
+                // 配置 ECharts 图表选项
+                var optionPies = {
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: '{a} <br/>{b} : {c} ({d}%)'
+                    },
+                    legend: {
+                        orient: 'vertical',
+                        left: 'left',
+                        data: data.map(item => item.name) 
+                    },
+                    series: [
+                        {
+                            name: '鱼群占比',
+                            type: 'pie',
+                            radius: '55%',
+                            center: ['50%', '60%'],
+                            roseType: 'radius',
+                            data: data, 
+                            emphasis: {
+                                itemStyle: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            }
+                        }
+                    ]
+                };
+
+                // 设置 ECharts 图表选项
+                echartsPies.setOption(optionPies);
+            },
+            error: function (error) {
+                console.log("Error:", error);
+            }
+        });
+
+        /**
+         * 柱状图
+         */
+        var echartsDataset = echarts.init(document.getElementById('echarts-dataset'), 'walden');
+
+        var optionDataset = {
+            legend: {},
+            tooltip: {},
+            dataset: {
+                dimensions: ['product', '2015', '2016', '2017'],
+                source: [
+                    { product: 'Matcha Latte', '2015': 43.3, '2016': 85.8, '2017': 93.7 },
+                    { product: 'Milk Tea', '2015': 83.1, '2016': 73.4, '2017': 55.1 },
+                    { product: 'Cheese Cocoa', '2015': 86.4, '2016': 65.2, '2017': 82.5 },
+                    { product: 'Walnut Brownie', '2015': 72.4, '2016': 53.9, '2017': 39.1 }
+                ]
+            },
+            xAxis: { type: 'category' },
+            yAxis: {},
+            // Declare several bar series, each will be mapped
+            // to a column of dataset.source by default.
+            series: [
+                { type: 'bar' },
+                { type: 'bar' },
+                { type: 'bar' }
+            ]
+        };
+
+        echartsDataset.setOption(optionDataset);
+
+        /**
+         * 中国地图
+         */
+        var echartsMap = echarts.init(document.getElementById('echarts-map'), 'walden');
+
+        var optionMap = {
+            legend: {},
+            tooltip: {
+                trigger: 'axis',
+                showContent: false
+            },
+            dataset: {
+                source: [
+                    ['product', '2012', '2013', '2014', '2015', '2016', '2017'],
+                    ['Matcha Latte', 41.1, 30.4, 65.1, 53.3, 83.8, 98.7],
+                    ['Milk Tea', 86.5, 92.1, 85.7, 83.1, 73.4, 55.1],
+                    ['Cheese Cocoa', 24.1, 67.2, 79.5, 86.4, 65.2, 82.5],
+                    ['Walnut Brownie', 55.2, 67.1, 69.2, 72.4, 53.9, 39.1]
+                ]
+            },
+            xAxis: { type: 'category' },
+            yAxis: { gridIndex: 0 },
+            grid: { top: '55%' },
+            series: [
+                { type: 'line', smooth: true, seriesLayoutBy: 'row' },
+                { type: 'line', smooth: true, seriesLayoutBy: 'row' },
+                { type: 'line', smooth: true, seriesLayoutBy: 'row' },
+                { type: 'line', smooth: true, seriesLayoutBy: 'row' },
+                {
+                    type: 'pie',
+                    id: 'pie',
+                    radius: '30%',
+                    center: ['50%', '25%'],
+                    label: {
+                        formatter: '{b}: {@2012} ({d}%)'
+                    },
+                    encode: {
+                        itemName: 'product',
+                        value: '2012',
+                        tooltip: '2012'
+                    }
+                }
+            ]
+        };
+
+        echartsMap.setOption(optionMap);
+
+        /**
+         * 仪表盘
+         */
+        var echartsGauge = echarts.init(document.getElementById('echarts-gauge'), 'walden');
+        var optionGauge = {
+            tooltip: {
+                formatter: "{a} <br/>{b} : {c}%"
+            },
+            toolbox: {
+                feature: {
+                    restore: {},
+                    saveAsImage: {}
+                }
+            },
+            series: [{
+                name: '速度',
+                type: 'gauge',
+                detail: { formatter: '{value} km/h' },
+                data: [{ value: 50, name: '速度' }]
+            }]
+        };
+        echartsGauge.setOption(optionGauge, true);
+
+        // echarts 窗口缩放自适应
+        window.onresize = function () {
+            echartsRecords.resize();
+            echartsRecords1.resize();
+            echartsDataset.resize();
+            echartsMap.resize();
+            echartsGauge.resize();
+        }
+
+    });
+</script>
+
+
+</body>
+
+</html>

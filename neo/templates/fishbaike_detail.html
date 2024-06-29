@@ -1,0 +1,114 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../static/lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="../static/css/public.css" media="all">
+
+    <style>
+        .layui-input-block {
+            display: flex;
+            align-items: center;
+            /* 垂直居中对齐 */
+        }
+
+        .layui-input-block input[type="text"] {
+            margin-right: 5px;
+            /* 右边距 */
+        }
+
+        .layui-input-block span {
+            white-space: nowrap;
+            /* 防止文本换行 */
+        }
+
+        .fish-images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            /* 根据需要调整间距 */
+            justify-content: center;
+            /* 水平居中图片 */
+        }
+
+        .image-container {
+            flex: 1;
+            /* 图片容器的灵活性 */
+            min-width: 150px;
+            /* 图片的最小宽度 */
+            max-width: 300px;
+            /* 图片的最大宽度 */
+        }
+
+        .fish-image {
+            width: 150px;
+            height: auto;
+            border-radius: 10px;
+            /* 圆角边框 */
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- <div class="layuimini-container"> -->
+    <div class="layuimini-main">
+        <div class="layui-input-block">
+            <div class="fish-info">
+                <h2>{{ fish_info.name }}</h2>
+                <hr>
+                {% if fish_info.alias %}
+                <h3>别名</h3>
+                <div>{{ fish_info.alias }}</div>
+                {% endif %}
+                <hr>
+                <h3>分布</h3>
+                <div>{{ fish_info.distribution }}</div>
+                <hr>
+                <h3>食物</h3>
+                <div>{{ fish_info.food }}</div>
+                <hr>
+                <h3>形态特征</h3>
+                <div>
+                    {% for p in fish_info.appearance %}
+                    {{ p }}
+                    {% endfor %}
+                </div>
+                <hr>
+                <h3>简介</h3>
+                <div>
+                    {% for p in fish_info.brief_intro %}
+                    <p>{{ p }}</p>
+                    {% endfor %}
+                </div>
+                <hr>
+                <h3>图片集</h3>
+                <div class="fish-images">
+                    {% for image_path in fish_info.images %}
+                    <div class="image-container">
+                        <img src="{{ image_path }}" alt="鱼类图片" class="fish-image">
+                    </div>
+                    {% endfor %}
+                </div>
+                <hr>
+                <a href="http://localhost:8000/fishbaike/remove?name={{ fish_info.name }}">
+                    <button type="button" class="layui-btn layui-btn-normal">删除该鱼类</button>
+                </a>
+                <a href="http://localhost:8000/fishbaike/modify?name={{ fish_info.name }}">
+                    <button type="button" class="layui-btn layui-btn-normal">编辑该鱼类</button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- </div> -->
+
+    <script src="../static/lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+</body>
+
+</html>

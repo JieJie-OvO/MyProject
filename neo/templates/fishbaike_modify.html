@@ -1,0 +1,94 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../static/lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="../static/css/public.css" media="all">
+
+    <style>
+        .layui-input-block {
+            display: flex;
+            align-items: center;
+            /* 垂直居中对齐 */
+        }
+
+        .layui-input-block input[type="text"] {
+            margin-right: 5px;
+            /* 右边距 */
+        }
+
+        .layui-input-block span {
+            white-space: nowrap;
+            /* 防止文本换行 */
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- <div class="layuimini-container"> -->
+    <div class="layuimini-main">
+        <form class="layui-form" action="http://localhost:8000/fishbaike/modify" lay-filter="example" method="post"
+            style="width: 800px;">
+            <div class="layui-form-item">
+                <label class="layui-form-label">正式名*</label>
+                <div class="layui-input-block">
+                    <textarea readonly id="name" name="name" required placeholder="正式名" maxlength="32" rows="1"
+                        cols="32" style="height:30px">{{ fishinfo.name }}</textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">别名</label>
+                <div class="layui-input-block">
+                    <textarea id="alias" name="alias" placeholder="别名" maxlength="128" rows="2" cols="32"
+                        style="height:60px">{{ fishinfo.alias }}</textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">分布*</label>
+                <div class="layui-input-block">
+                    <textarea id="distribution" name="distribution" required placeholder="分布" maxlength="256" rows="2"
+                        cols="32" style="height:60px">{{ fishinfo.distribution }}</textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">食物*</label>
+                <div class="layui-input-block">
+                    <textarea id="food" name="food" required placeholder="食物" maxlength="256" rows="2" cols="32"
+                        style="height:60px">{{ fishinfo.food }}</textarea>
+
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">形态*</label>
+                <div class="layui-input-block">
+                    <textarea id="appearance" name="appearance" required placeholder="形态" maxlength="1024" rows="10"
+                        cols="32">{{ fishinfo.appearance }}</textarea>
+
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">简介*</label>
+                <div class="layui-input-block">
+                    <textarea id="brief_intro" name="brief_intro" required placeholder="简介" maxlength="2048" rows="10"
+                        cols="32">{{ fishinfo.brief_intro }}</textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit="" lay-filter="demo1">确认修改</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+<script src="../static/lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+
+</html>

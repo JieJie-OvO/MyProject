@@ -1,0 +1,745 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>首页二</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../static/lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="../static/lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="../static/css/public.css" media="all">
+    <style>
+        .layui-card {
+            border: 1px solid #f2f2f2;
+            border-radius: 5px;
+        }
+
+        .icon {
+            margin-right: 10px;
+            color: #1aa094;
+        }
+
+        .icon-cray {
+            color: #ffb800 !important;
+        }
+
+        .icon-blue {
+            color: #1e9fff !important;
+        }
+
+        .icon-tip {
+            color: #ff5722 !important;
+        }
+
+        .layuimini-qiuck-module {
+            text-align: center;
+            margin-top: 10px
+        }
+
+        .layuimini-qiuck-module a i {
+            display: inline-block;
+            width: 100%;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            border-radius: 2px;
+            font-size: 30px;
+            background-color: #F8F8F8;
+            color: #333;
+            transition: all .3s;
+            -webkit-transition: all .3s;
+        }
+
+        .layuimini-qiuck-module a cite {
+            position: relative;
+            top: 2px;
+            display: block;
+            color: #666;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: 14px;
+        }
+
+        .welcome-module {
+            width: 100%;
+            height: 210px;
+        }
+
+        .panel {
+            background-color: #fff;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .05)
+        }
+
+        .panel-body {
+            padding: 10px
+        }
+
+        .panel-title {
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 12px;
+            color: inherit
+        }
+
+        .label {
+            display: inline;
+            padding: .2em .6em .3em;
+            font-size: 75%;
+            font-weight: 700;
+            line-height: 1;
+            color: #fff;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: .25em;
+            margin-top: .3em;
+        }
+
+        .layui-red {
+            color: red
+        }
+
+        .main_btn>p {
+            height: 40px;
+        }
+
+        .layui-bg-number {
+            background-color: #F8F8F8;
+        }
+
+        .layuimini-notice:hover {
+            background: #f6f6f6;
+        }
+
+        .layuimini-notice {
+            padding: 7px 16px;
+            clear: both;
+            font-size: 12px !important;
+            cursor: pointer;
+            position: relative;
+            transition: background 0.2s ease-in-out;
+        }
+
+        .layuimini-notice-title,
+        .layuimini-notice-label {
+            padding-right: 70px !important;
+            text-overflow: ellipsis !important;
+            overflow: hidden !important;
+            white-space: nowrap !important;
+        }
+
+        .layuimini-notice-title {
+            line-height: 28px;
+            font-size: 14px;
+        }
+
+        .layuimini-notice-extra {
+            position: absolute;
+            top: 50%;
+            margin-top: -8px;
+            right: 16px;
+            display: inline-block;
+            height: 16px;
+            color: #999;
+        }
+
+        /* 定义颜色渐变 */
+        .blue1 {
+            color: rgba(0, 0, 255, 0.351);
+        }
+
+        .blue2 {
+            color: rgba(0, 0, 255, 0.552);
+        }
+
+        .green {
+            color: rgba(128, 255, 0, 0.775);
+        }
+
+        .orange {
+            color: orange;
+        }
+
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+<script>
+    // 服务器端渲染时设置answer变量
+    var answer = "{{answer}}"; // 假设使用的是类似Jinja2的模板引擎，将answer值插入
+</script>
+
+<body>
+    <div class="layuimini-container">
+        <div class="layuimini-main">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md8">
+                    <div class="layui-row layui-col-space15">
+                        <div class="layui-col-md6">
+                            <div class="layui-card">
+                                <div class="layui-card-header">
+                                    <i class="fa fa-warning icon"></i>原摄像头
+                                    <li id="uploadTab" style="float: right;">
+                                        <button type="button" class="layui-btn layui-btn-normal"
+                                            id="uploadButton">切换信号源</button>
+                                    </li>
+                                </div>
+                                <div class="layui-card-body">
+                                    <video id="video1" style="width: 100%;" controls>
+                                        <source type="video/mp4">
+                                        <p>您的浏览器不支持 HTML5 视频。</p>
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md6">
+                            <div class="layui-card">
+                                <div class="layui-card-header"><i class="fa fa-credit-card icon"></i>识别效果</div>
+                                <div class="layui-card-body">
+                                    <video id="video2" style="width: 100%;" controls>
+                                        <source type="video/mp4">
+                                        <p>您的浏览器不支持 HTML5 视频。</p>
+                                    </video>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="layui-col-md12">
+                            <div class="layui-col-md6">
+                                <div class="layui-card">
+                                    <div class="layui-card-header"><i class="fa fa-warning icon"></i>信息统计</div>
+                                    <div class="layui-card-body">
+                                        <div class="welcome-module">
+                                            <div class="layui-row layui-col-space10">
+                                                <div class="layui-col-xs6">
+                                                    <div class="panel layui-bg-number">
+                                                        <div class="panel-body">
+                                                            <div class="panel-title">
+                                                                <span class="label pull-right layui-bg-blue">实时</span>
+                                                                <h5>编号</h5>
+                                                            </div>
+                                                            <div class="panel-content">
+                                                                <h1 class="no-margins">fish-9527</h1>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="layui-col-xs6">
+                                                    <div class="panel layui-bg-number">
+                                                        <div class="panel-body">
+                                                            <div class="panel-title">
+                                                                <span class="label pull-right layui-bg-cyan">实时</span>
+                                                                <h5>鱼种</h5>
+                                                            </div>
+                                                            <div class="panel-content">
+
+                                                                <h1 id="dynamicText" class="no-margins">moonfish</h1>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="layui-col-xs6">
+                                                    <div class="panel layui-bg-number">
+                                                        <div class="panel-body">
+                                                            <div class="panel-title">
+                                                                <span class="label pull-right layui-bg-orange">实时</span>
+                                                                <h5>体长</h5>
+                                                            </div>
+                                                            <div class="panel-content">
+                                                                <h1 class="no-margins">10寸</h1>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="layui-col-xs6">
+                                                    <div class="panel layui-bg-number">
+                                                        <div class="panel-body">
+                                                            <div class="panel-title">
+                                                                <span class="label pull-right layui-bg-green">实时</span>
+                                                                <h5>体重</h5>
+                                                            </div>
+                                                            <div class="panel-content">
+                                                                <h1 class="no-margins">5kg</h1>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-md6">
+                                <div class="layui-card">
+                                    <div class="layui-card-header"><i class="fa fa-credit-card icon icon-blue"></i>智能信息
+                                    </div>
+                                    <div class="layui-card-body">
+                                        <div class="welcome-module">
+                                            <div class="layui-row layui-col-space10 layuimini-qiuck">
+                                                <div class="layui-col-xs6 layuimini-qiuck-module">
+                                                    <a href="javascript:;" layuimini-content-href="templates/404.html"
+                                                        data-title="轨迹分析" data-icon="fa fa-gears">
+                                                        <i class="fa fa-gears"></i>
+                                                        <cite>轨迹分析</cite>
+                                                    </a>
+                                                </div>
+                                                <div class="layui-col-xs6 layuimini-qiuck-module">
+                                                    <a href="http://127.0.0.1:8000/fish/predict"
+                                                        layuimini-content-href="templates/404.html" data-title="轨迹追踪"
+                                                        data-icon="fa fa-search">
+                                                        <i class="fa fa-search"></i>
+                                                        <cite>预测生长</cite>
+                                                    </a>
+                                                </div>
+                                                <div class="layui-col-xs6 layuimini-qiuck-module">
+                                                    <a id="targetRecognitionBtn"
+                                                        href="http://127.0.0.1:8000/pic/analysis_video"
+                                                        layuimini-content-href="templates/404.html" data-title="患病情况"
+                                                        data-icon="fa fa-hourglass-end">
+                                                        <i class="fa fa-hourglass-end"></i>
+                                                        <cite>鱼类识别</cite>
+                                                    </a>
+                                                </div>
+                                                <div class="layui-col-xs6 layuimini-qiuck-module">
+                                                    <a href="http://127.0.0.1:8000/water/predict"
+                                                        layuimini-content-href="templates/404.html" data-title="异常情况"
+                                                        data-icon="fa fa-snowflake-o">
+                                                        <i class="fa fa-snowflake-o"></i>
+                                                        <cite>异常情况</cite>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-md12">
+                                <div class="layui-card">
+                                    <div class="layui-card-header"><i class="fa fa-credit-card icon icon-blue"></i>鱼类百科
+                                    </div>
+                                    <div class="layui-card-body">
+                                        <div>
+                                            {% if permission > 1%}
+                                            <a href="http://127.0.0.1:8000/fishbaike/add"><button type="button"
+                                                    class="layui-btn layui-btn-normal">鱼类添加</button></a>
+                                            {% endif %}
+                                            <a href="http://127.0.0.1:8000/fishbaike/writeDB"><button type="button"
+                                                    class="layui-btn layui-btn-normal">数据刷新</button></a>
+                                            <a href="http://127.0.0.1:8000/fishbaike/export" download><button
+                                                    type="button" class="layui-btn layui-btn-normal">数据导出</button></a>
+                                        </div>
+                                        <hr>
+                                        <div>
+                                            <form action="http://localhost:8000/fishbaike/search" method="get">
+                                                <div>
+                                                    <button lay-submit="" lay-filter="demo1">查询</button>
+                                                    <input id="name" name="name" required placeholder="鱼类名称"
+                                                        maxlength="32" type="text" />
+                                                </div>
+                                                <div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-md12">
+                                <div class="layui-card">
+                                    <div class="layui-card-header"><i class="fa fa-line-chart icon"></i>信息监测</div>
+                                    <div class="layui-card-body">
+                                        <div id="echarts-records" style="width: 100%;min-height:300px"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-col-md4">
+
+                    <div class="layui-card">
+                        <div class="layui-card-header"><i class="fa fa-fire icon"></i>AI决策</div>
+                        <div class="layui-card-body layui-text">
+                            <table class="layui-table">
+                                <colgroup>
+                                    <col width="80">
+                                    <col>
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <td>温度</td>
+                                        <td>
+                                            10-20
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>光照</td>
+                                        <td>20-100</td>
+                                    </tr>
+                                    <tr>
+                                        <td>溶解度</td>
+                                        <td>0.2-0.5</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PH</td>
+                                        <td>
+                                            8-8.7
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>盐度</td>
+                                        <td>
+                                            0.01-0.03
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="layui-card">
+                        <div class="layui-card-header"><i class="fa fa-fire icon"></i>气象数据</div>
+                        <div class="layui-card-body layui-text">
+                            <div>
+                                <p>当前位置：{{curloc.province}} - {{curloc.city}}</p>
+                                <a href="http://127.0.0.1:8000/weather/changeloc"><button type="button"
+                                        class="layui-btn layui-btn-normal">修改定位</button></a>
+                                <a href="http://127.0.0.1:8000/weather/weekreport"><button type="button"
+                                        class="layui-btn layui-btn-normal">天气周报</button></a>
+                                <a href="http://127.0.0.1:8000/weather/fresh"><button type="button"
+                                        class="layui-btn layui-btn-normal">刷新天气</button></a>
+                            </div>
+                            <table class="layui-table">
+                                <colgroup>
+                                    <col width="100">
+                                    <col>
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <td>云雨</td>
+                                        <td>
+                                            {{weather_day.weather_beg}} 转 {{weather_day.weather_end}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>温度</td>
+                                        <td>
+                                            最低{{weather_day.temperature_min}}，最高{{weather_day.temperature_max}}，当前{{weather_hour.temperature}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>风向</td>
+                                        <td>
+                                            {{weather_day.wind_direc_beg}} 转
+                                            {{weather_day.wind_direc_end}}，当前{{weather_hour.wind_direc}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>风速</td>
+                                        <td>
+                                            {{weather_day.wind_level_beg}} 转
+                                            {{weather_day.wind_level_end}}，当前{{weather_hour.wind_veloc}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>当前气压</td>
+                                        <td>
+                                            {{weather_hour.pressure}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>当前湿度</td>
+                                        <td>
+                                            {{weather_hour.humidity}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>当前云量</td>
+                                        <td>
+                                            {{weather_hour.cloud}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>当前降水</td>
+                                        <td>
+                                            {{weather_hour.rain}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+
+                    <div class="layui-card">
+                        <div class="layui-card-header"><i class="fa fa-fire icon"></i>水质预警</div>
+                        <div class="layui-card-body layui-text">
+                            <table class="layui-table">
+                                <colgroup>
+                                    <col width="100">
+                                    <col>
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <td>水质预测</td>
+                                        <td>
+                                            {% if water_preres == 0 %}
+                                            <span class="blue1"> 水质等级：{{water_predict_list.0}} </span>
+                                            {% elif water_preres == 1 %}
+                                            <span class="blue2"> 水质等级：{{water_predict_list.1}} </span>
+                                            {% elif water_preres == 2 %}
+                                            <span class="green"> 水质等级：{{water_predict_list.2}} </span>
+                                            {% elif water_preres == 3 %}
+                                            <span class="orange"> 水质等级：{{water_predict_list.3}} </span>
+                                            {% else%}
+                                            <span class="red"> 水质等级：{{water_predict_list.4}} </span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% for key,value in water_res.items %}
+                                    <tr>
+                                        <td>{{key}}</td>
+                                        <td>
+                                            {% if value == 0 %}
+                                            <span class="blue1"> 等级：{{water_predict_list.0}} </span>
+                                            {% elif value == 1 %}
+                                            <span class="blue2"> 等级：{{water_predict_list.1}} </span>
+                                            {% elif value == 2 %}
+                                            <span class="green"> 等级：{{water_predict_list.2}} </span>
+                                            {% elif value == 3 %}
+                                            <span class="orange"> 等级：{{water_predict_list.3}} </span>
+                                            {% else%}
+                                            <span class="red"> 等级：{{water_predict_list.4}} </span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="layui-card">
+                        <div class="layui-card-header"><i class="fa fa-paper-plane-o icon"></i>预警</div>
+                        <div class="layui-card-body layui-text layadmin-text">
+                            <B><BIG>
+                                    <font color="red">-- 网衣破损(2024-02-01)</font>
+                                </BIG></B></a>
+                            <br>
+                            <B><BIG>
+                                    <font color="red">-- 海啸警报(2024-05-01 13:34)(国家海洋局南海预报中心发布)</font>
+                                </BIG></B></a>
+                        </div>
+                    </div>
+                    {% if show == 1 %}
+                    <div class="layui-card">
+                        <div class="layui-card-header"><i class="fa fa-paper-plane-o icon"></i>鱼群预测信息(未来十天走向)</div>
+                        <div class="layui-card-body layui-text">
+                            <table class="layui-table">
+                                <colgroup>
+                                    <col width="100">
+                                    <col>
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <td>预期鱼群平均身长</td>
+                                        <td>
+                                            {{ l }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>预期鱼群平均体重</td>
+                                        <td>{{ w }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../static/lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+    <script src="../static/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+    <script>
+        // 页面加载后根据answer值修改内容
+        document.addEventListener("DOMContentLoaded", function () {
+            var dynamicTextElement = document.getElementById('dynamicText');
+            if (answer && answer.trim() !== '') {
+                dynamicTextElement.textContent = answer;
+            } else {
+                dynamicTextElement.textContent = 'null';
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var targetRecognitionBtn = document.getElementById('targetRecognitionBtn');
+
+            targetRecognitionBtn.addEventListener('click', function (e) {
+                e.preventDefault(); // 阻止默认链接跳转行为
+
+                // 显示处理中的弹窗
+                var loadingModal = document.createElement('div');
+                loadingModal.id = 'loadingModal';
+                loadingModal.style.position = 'fixed';
+                loadingModal.style.top = 0;
+                loadingModal.style.left = 0;
+                loadingModal.style.width = '100%';
+                loadingModal.style.height = '100%';
+                loadingModal.style.backgroundColor = 'rgba(0,0,0,0.5)';
+                loadingModal.style.display = 'flex';
+                loadingModal.style.justifyContent = 'center';
+                loadingModal.style.alignItems = 'center';
+                loadingModal.innerHTML = '<div class="loader">加载中...</div>';
+                document.body.appendChild(loadingModal);
+
+                // 发起异步请求
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', "http://127.0.0.1:8000/pic/analysis_video", true); // 使用data-url属性作为请求地址
+                xhr.onload = function () {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        // 请求成功，隐藏弹窗并根据需求处理响应
+                        document.body.removeChild(loadingModal);
+                        alert('处理成功！');
+                        // 这里可以根据实际情况使用响应数据，比如更新页面内容
+                        location.reload()
+                    } else {
+                        // 请求失败，隐藏弹窗并提示错误
+                        document.body.removeChild(loadingModal);
+                        alert('处理时发生错误！');
+                    }
+                };
+                xhr.onerror = function () {
+                    // 网络错误，隐藏弹窗并提示
+                    document.body.removeChild(loadingModal);
+                    alert('网络错误，请重试！');
+                };
+                xhr.send();
+            });
+        });
+    </script>
+    <script>
+        function updateVideoSource(videoId, src) {
+            var video = document.getElementById(videoId);
+            var source = video.querySelector('source');
+            var timestamp = new Date().getTime();
+            source.src = src + "?v=" + timestamp;
+            video.load();
+        }
+
+        updateVideoSource('video1', '../static/video/test/test.mp4');
+        updateVideoSource('video2', '../static/video/answer/test.mp4');
+    </script>
+    <script>
+        layui.use('layer', function () {
+            var layer = layui.layer;
+
+            // 点击上传文件按钮时弹出上传框
+            document.getElementById('uploadButton').addEventListener('click', function () {
+                layer.open({
+                    type: 1,
+                    title: '切换信号源',
+                    area: ['500px', '300px'],
+                    content: `
+                <div style="padding: 20px;">
+                    <form method="post" enctype="multipart/form-data" action="http://127.0.0.1:8000/pic/switch_video">
+                        <p>选择需要检测的信号源：</p>
+                        <input type="radio" id="type1" name="upload_type" value="1" checked>
+                        <label for="type1">摄像头1</label><br>
+                        <input type="radio" id="type2" name="upload_type" value="2">
+                        <label for="type2">摄像头2</label><br>
+                        <input type="radio" id="type3" name="upload_type" value="3">
+                        <label for="type3">摄像头3</label><br><br>
+                        <button type="submit">修改信号源</button>
+                    </form>
+                </div>
+                `
+                });
+            });
+        });
+    </script>
+    <script>
+        layui.use(['layer', 'miniTab', 'echarts'], function () {
+            var $ = layui.jquery,
+                layer = layui.layer,
+                miniTab = layui.miniTab,
+                echarts = layui.echarts;
+
+            miniTab.listen();
+
+            /**
+             * 报表功能
+             */
+            var echartsRecords = echarts.init(document.getElementById('echarts-records'), 'walden');
+            var optionRecords = {
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['水温情况', '光照情况', 'PH', '溶解氧']
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: ['六天前', '五天前', '四天前', '三天前', '前天', '昨天', '今天']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [
+                    {
+                        name: '水温情况',
+                        type: 'line',
+                        data: [20, 19, 21, 20, 20, 20, 21]
+                    },
+                    {
+                        name: '光照情况',
+                        type: 'line',
+                        data: [60, 85, 70, 75, 80, 90, 100]
+                    },
+                    {
+                        name: 'PH',
+                        type: 'line',
+                        data: [7.5, 8.0, 7.8, 7.9, 8.0, 8.1, 8.2]
+                    },
+                    {
+                        name: '溶解氧',
+                        type: 'line',
+                        data: [0.2, 0.7, 0.4, 0.5, 0.5, 0.4, 0.3]
+                    }
+                ]
+            };
+            echartsRecords.setOption(optionRecords);
+
+            // echarts 窗口缩放自适应
+            window.onresize = function () {
+                echartsRecords.resize();
+            }
+
+        });
+    </script>
+</body>
+
+</html>
